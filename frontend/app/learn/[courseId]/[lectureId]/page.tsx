@@ -6,7 +6,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   Play, FileText, Book, ChevronRight, Check,
-  ArrowLeft, Lightbulb, Clock, ExternalLink
+  ArrowLeft, Lightbulb, Clock, ExternalLink, Search, Target
 } from "lucide-react";
 import AISidebar from "@/components/sidebar/AISidebar";
 
@@ -16,6 +16,7 @@ type Course = {
   id: string; title: string; subject: string; certificate: boolean;
   teacher: { name: string; flag: string };
   lectures: Lecture[];
+  what_you_learn: string[];
 };
 
 const MAT_ICON: Record<string, React.ElementType> = { video: Play, paper: FileText, book: Book };
@@ -47,6 +48,8 @@ export default function LearnPage() {
   const [completed, setCompleted] = useState<string[]>([]);
   const [activeTab, setActiveTab] = useState<"all" | "video" | "paper" | "book">("all");
   const [activeVideo, setActiveVideo] = useState<Material | null>(null);
+  const [topicSearch, setTopicSearch] = useState("");
+  const [topicSearchFocused, setTopicSearchFocused] = useState(false);
 
   useEffect(() => {
     fetch("/courses.json")
@@ -79,6 +82,23 @@ export default function LearnPage() {
   ) || [];
 
   const lectureSummary = `This lecture "${lecture?.title}" covers: ${lecture?.description}`;
+
+  const scoreLecture = (lec: Lecture, query: string): number => {
+    if (!query.trim()) return 0;
+    const words = query.toLowerCase().split(/\s+/).filter((w) => w.length > 2);
+    const haystack = (lec.title + " " + lec.description).toLowerCase();
+    return words.filter((w) => haystack.includes(w)).length;
+  };
+
+  const bestTopicMatch = topicSearch.trim() && course
+    ? course.lectures.reduce(
+        (best, lec) => {
+          const s = scoreLecture(lec, topicSearch);
+          return s > best.score ? { lec, score: s } : best;
+        },
+        { lec: null as Lecture | null, score: 0 }
+      )
+    : { lec: null, score: 0 };
 
   if (!course || !lecture) {
     return (
@@ -190,26 +210,89 @@ export default function LearnPage() {
           {/* Course outline */}
           <div className="lg:col-span-1 order-2 lg:order-1">
             <p className="text-xs text-gray-400 mb-3 font-medium uppercase tracking-wider">Course outline</p>
+
+            {/* Find a topic */}
+            <div className="mb-3">
+              <div className={`flex items-center gap-2 border rounded-xl px-2.5 py-2 transition-all ${
+                topicSearchFocused ? "border-indigo-300 ring-1 ring-indigo-100" : "border-gray-200"
+              } bg-gray-50`}>
+                <Search className="w-3 h-3 text-gray-400 shrink-0" />
+                <input
+                  type="text"
+                  value={topicSearch}
+                  onChange={(e) => setTopicSearch(e.target.value)}
+                  onFocus={() => setTopicSearchFocused(true)}
+                  onBlur={() => setTopicSearchFocused(false)}
+                  placeholder="Find a topic..."
+                  className="flex-1 bg-transparent text-xs text-gray-700 placeholder:text-gray-400 focus:outline-none"
+                />
+                {topicSearch && (
+                  <button onClick={() => setTopicSearch("")} className="text-gray-300 hover:text-gray-600 shrink-0 text-xs">✕</button>
+                )}
+              </div>
+              {bestTopicMatch.lec && bestTopicMatch.score > 0 && (
+                <motion.div
+                  initial={{ opacity: 0, y: -4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-2 px-3 py-2.5 bg-indigo-50 border border-indigo-200 rounded-xl"
+                >
+                  <p className="text-xs text-indigo-500 font-medium mb-0.5 flex items-center gap-1">
+                    <Target className="w-3 h-3" /> Best match
+                  </p>
+                  <Link href={`/learn/${courseId}/${bestTopicMatch.lec.id}`}>
+                    <p className="text-xs text-indigo-800 font-medium hover:underline leading-snug">
+                      Ch {bestTopicMatch.lec.order}: {bestTopicMatch.lec.title}
+                    </p>
+                  </Link>
+                  <p className="text-xs text-indigo-500 mt-0.5">{bestTopicMatch.lec.duration}</p>
+                </motion.div>
+              )}
+            </div>
+
             <div className="space-y-1">
               {course.lectures.map((lec: Lecture) => {
                 const isActive = lec.id === lectureId;
                 const isDoneLec = completed.includes(lec.id);
+                const isMatch = bestTopicMatch.lec?.id === lec.id && bestTopicMatch.score > 0;
                 return (
                   <Link key={lec.id} href={`/learn/${courseId}/${lec.id}`}>
                     <div className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs transition-all cursor-pointer ${
-                      isActive ? "bg-gray-100 text-gray-900" : "text-gray-500 hover:text-gray-800 hover:bg-gray-50"
+                      isActive ? "bg-gray-100 text-gray-900" : isMatch ? "bg-indigo-50 text-indigo-800 border border-indigo-200" : "text-gray-500 hover:text-gray-800 hover:bg-gray-50"
                     }`}>
                       <div className={`w-4 h-4 rounded-full border flex items-center justify-center shrink-0 ${
-                        isDoneLec ? "border-emerald-500 bg-emerald-50" : isActive ? "border-gray-400" : "border-gray-300"
+                        isDoneLec ? "border-emerald-500 bg-emerald-50" : isActive ? "border-gray-400" : isMatch ? "border-indigo-300" : "border-gray-300"
                       }`}>
                         {isDoneLec && <Check className="w-2 h-2 text-emerald-600" />}
                       </div>
-                      <span className="leading-snug line-clamp-2">{lec.title}</span>
+                      <span className="leading-snug line-clamp-2 flex-1">{lec.title}</span>
                     </div>
                   </Link>
                 );
               })}
             </div>
+
+            {/* Learning outcomes checklist */}
+            {course.what_you_learn?.length > 0 && (
+              <div className="mt-6">
+                <p className="text-xs text-gray-400 mb-2.5 font-medium uppercase tracking-wider">Learning goals</p>
+                <div className="space-y-1.5">
+                  {course.what_you_learn.slice(0, 6).map((item, i) => {
+                    const threshold = Math.ceil((i + 1) * (course.lectures.length / Math.min(course.what_you_learn.length, 6)));
+                    const achieved = completed.length >= threshold;
+                    return (
+                      <div key={i} className={`flex items-start gap-2 text-xs transition-all ${achieved ? "text-gray-500" : "text-gray-400"}`}>
+                        <div className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center shrink-0 mt-0.5 ${
+                          achieved ? "border-emerald-400 bg-emerald-50" : "border-gray-300"
+                        }`}>
+                          {achieved && <Check className="w-2 h-2 text-emerald-500" />}
+                        </div>
+                        <span className={`leading-snug ${achieved ? "line-through" : ""}`}>{item}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Main content */}
@@ -336,6 +419,7 @@ export default function LearnPage() {
         courseTitle={course.title}
         lectureTitle={lecture.title}
         lectureSummary={lectureSummary}
+        lectureId={lectureId}
         open={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
       />
