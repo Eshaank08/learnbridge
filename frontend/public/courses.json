@@ -1,0 +1,507 @@
+[
+  {
+    "id": "cs-fundamentals",
+    "title": "Computer Science Fundamentals",
+    "subtitle": "From binary to algorithms — a complete foundation.",
+    "image": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=400&fit=crop",
+    "teacher": { "name": "Prof. David Miller", "institution": "MIT OpenCourseWare", "flag": "🇺🇸", "bio": "20 years teaching CS at MIT. Author of 3 textbooks on algorithms." },
+    "subject": "Computer Science",
+    "level": "beginner",
+    "duration": "8 weeks",
+    "total_hours": 32,
+    "certificate": true,
+    "certificate_name": "Certificate in Computer Science Fundamentals",
+    "sponsor": { "name": "Google", "tagline": "Building the next generation of engineers." },
+    "description": "A complete introduction to computer science — from how computers work at the lowest level to writing your first algorithms. No prior experience needed.",
+    "what_you_learn": ["How computers represent and process data", "Core algorithmic thinking", "Data structures: arrays, trees, graphs", "How the internet works", "Introduction to programming logic"],
+    "lectures": [
+      {
+        "id": "cs-lec-1", "order": 1, "title": "What is a Computer?", "duration": "3 hours",
+        "description": "What is computation? How do machines think?",
+        "materials": [
+          { "type": "video", "title": "CS50 Lecture 0 — Scratch & Computational Thinking", "duration": "1h 58min", "youtube_id": "IDDmrzzB14M", "description": "Harvard's legendary CS50 opens with the big picture of what computing is." },
+          { "type": "video", "title": "How Computers Work — Binary and Data", "duration": "22min", "youtube_id": "1GSjbWt0c9M", "description": "How 0s and 1s represent everything from text to images." },
+          { "type": "paper", "title": "Computing Machinery and Intelligence", "author": "Alan Turing, 1950", "url": "https://www.cs.ox.ac.uk/activities/ieg/e-library/sources/t_article.pdf", "description": "The paper that started AI. Can machines think?" },
+          { "type": "book", "title": "Structure and Interpretation of Computer Programs — Ch. 1", "author": "Abelson & Sussman, MIT", "url": "https://web.mit.edu/6.001/6.037/sicp.pdf", "description": "The legendary SICP. Chapter 1 introduces the elements of programming." }
+        ]
+      },
+      {
+        "id": "cs-lec-2", "order": 2, "title": "Algorithms and Problem Solving", "duration": "4 hours",
+        "description": "How to think algorithmically. Sorting, searching, complexity.",
+        "materials": [
+          { "type": "video", "title": "MIT 6.006 — Introduction to Algorithms", "duration": "1h 22min", "youtube_id": "HtSuA80QTyo", "description": "Core algorithmic thinking from MIT's famous 6.006 course." },
+          { "type": "video", "title": "Big O Notation in 5 Minutes", "duration": "6min", "youtube_id": "v4cd1O4zkGw", "description": "How we measure algorithm efficiency." },
+          { "type": "book", "title": "Introduction to Algorithms (CLRS) — Ch. 2", "author": "Cormen, Leiserson, Rivest, Stein", "url": "https://mitpress.mit.edu/9780262046305/", "description": "The algorithms bible. Chapter 2 covers insertion sort and loop invariants." }
+        ]
+      },
+      {
+        "id": "cs-lec-3", "order": 3, "title": "Data Structures", "duration": "5 hours",
+        "description": "Arrays, linked lists, stacks, queues, trees, and graphs.",
+        "materials": [
+          { "type": "video", "title": "CS50 — Data Structures", "duration": "1h 50min", "youtube_id": "2T-A_GFuoTo", "description": "CS50's definitive data structures lecture." },
+          { "type": "video", "title": "Hash Tables Explained", "duration": "8min", "youtube_id": "shs0KM3wKv8", "description": "The most important data structure in software engineering." }
+        ]
+      },
+      {
+        "id": "cs-lec-4", "order": 4, "title": "How the Internet Works", "duration": "3 hours",
+        "description": "Protocols, packets, HTTP, DNS, and how the web is built.",
+        "materials": [
+          { "type": "video", "title": "CS50 — How the Internet Works", "duration": "1h 10min", "youtube_id": "9uebakqWlB0", "description": "David Malan explains the internet from packets to HTTPS." },
+          { "type": "paper", "title": "A Protocol for Packet Network Intercommunication", "author": "Cerf & Kahn, 1974", "url": "https://www.cs.princeton.edu/courses/archive/fall06/cos561/papers/cerf74.pdf", "description": "The foundational TCP/IP paper." }
+        ]
+      },
+      {
+        "id": "cs-lec-5", "order": 5, "title": "Memory and Operating Systems", "duration": "4 hours",
+        "description": "How computers manage memory, run programs, and why abstraction matters.",
+        "materials": [
+          { "type": "video", "title": "Operating Systems in 45 Minutes", "duration": "45min", "youtube_id": "26QPDBe-NB8", "description": "What an OS actually does — scheduling, virtual memory, syscalls." },
+          { "type": "book", "title": "Operating Systems: Three Easy Pieces — Ch. 1-4", "author": "Arpaci-Dusseau (free online)", "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/", "description": "Best free OS textbook online." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "python-programming",
+    "title": "Python Programming from Zero",
+    "subtitle": "Learn to code in the world's most popular language.",
+    "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=400&fit=crop",
+    "teacher": { "name": "Dr. Angela Yu", "institution": "App Brewery / London", "flag": "🇬🇧", "bio": "Top-rated programming instructor. Taught 1M+ students online." },
+    "subject": "Computer Science",
+    "level": "beginner",
+    "duration": "6 weeks",
+    "total_hours": 24,
+    "certificate": true,
+    "certificate_name": "Certificate in Python Programming",
+    "sponsor": { "name": "SAP", "tagline": "Code is the language of the future." },
+    "description": "Python is the most beginner-friendly language and the gateway to AI, data science, and web development. Start from zero, end with real projects.",
+    "what_you_learn": ["Variables, loops, and functions", "Lists, dictionaries, and data structures", "File handling and APIs", "Object-oriented programming", "Build 3 real projects"],
+    "lectures": [
+      {
+        "id": "py-lec-1", "order": 1, "title": "Python Basics — Variables and Types", "duration": "3 hours",
+        "description": "Your first Python code. Variables, strings, integers, and printing.",
+        "materials": [
+          { "type": "video", "title": "Python Tutorial for Beginners (FreeCodeCamp)", "duration": "4h 26min", "youtube_id": "rfscVS0vtbw", "description": "The most complete free Python course on YouTube." },
+          { "type": "video", "title": "Python in 100 Seconds", "duration": "2min", "youtube_id": "x7X9w_GIm1s", "description": "Lightning overview of what Python is and why it matters." }
+        ]
+      },
+      { "id": "py-lec-2", "order": 2, "title": "Control Flow and Loops", "duration": "3 hours", "description": "If statements, for loops, while loops — making programs that decide.", "materials": [{ "type": "video", "title": "Python Control Flow (Corey Schafer)", "duration": "45min", "youtube_id": "DZwmZ8Usvnk", "description": "Clear explanation of if/elif/else and loops." }] },
+      { "id": "py-lec-3", "order": 3, "title": "Functions and Modules", "duration": "3 hours", "description": "Writing reusable code. Functions, arguments, return values, modules.", "materials": [{ "type": "video", "title": "Python Functions — Corey Schafer", "duration": "28min", "youtube_id": "9Os0o3wzS_I", "description": "Everything about functions in Python." }] },
+      { "id": "py-lec-4", "order": 4, "title": "Lists, Dicts, and Data", "duration": "4 hours", "description": "Python's core data structures.", "materials": [{ "type": "video", "title": "Python Lists, Tuples, Sets — Corey Schafer", "duration": "28min", "youtube_id": "W8KRzm-HUcc", "description": "The most useful Python collections." }] },
+      { "id": "py-lec-5", "order": 5, "title": "Build Your First Project", "duration": "4 hours", "description": "Apply everything: build a weather app that calls a real API.", "materials": [{ "type": "video", "title": "Python API Tutorial — Real Project", "duration": "1h 15min", "youtube_id": "SqvVm3QiQVk", "description": "Build a real Python project that fetches data from a web API." }] }
+    ]
+  },
+  {
+    "id": "web-development",
+    "title": "Web Development: HTML, CSS & JavaScript",
+    "subtitle": "Build real websites from scratch.",
+    "image": "https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&h=400&fit=crop",
+    "teacher": { "name": "Jonas Schmedtmann", "institution": "Independent / Germany", "flag": "🇩🇪", "bio": "Top web dev instructor. Creator of The Complete JavaScript Course." },
+    "subject": "Computer Science",
+    "level": "beginner",
+    "duration": "8 weeks",
+    "total_hours": 36,
+    "certificate": true,
+    "certificate_name": "Certificate in Web Development",
+    "sponsor": { "name": "Siemens", "tagline": "Digitalization starts with developers." },
+    "description": "The only course you need to go from zero to building real, deployed websites using HTML, CSS, and JavaScript.",
+    "what_you_learn": ["HTML structure and semantics", "CSS styling and layouts", "JavaScript interactivity", "Responsive design", "Deploy your website live"],
+    "lectures": [
+      { "id": "web-lec-1", "order": 1, "title": "HTML — Structure of the Web", "duration": "4 hours", "description": "Every web page is HTML.", "materials": [{ "type": "video", "title": "HTML Full Course (FreeCodeCamp)", "duration": "2h 1min", "youtube_id": "pQN-pnXPaVg", "description": "Complete HTML from scratch." }] },
+      { "id": "web-lec-2", "order": 2, "title": "CSS — Making it Beautiful", "duration": "5 hours", "description": "Colors, typography, spacing, layout.", "materials": [{ "type": "video", "title": "CSS Full Course (FreeCodeCamp)", "duration": "11h 15min", "youtube_id": "OXGznpKZ_sA", "description": "Every CSS property you need." }] },
+      { "id": "web-lec-3", "order": 3, "title": "JavaScript Fundamentals", "duration": "6 hours", "description": "The programming language of the web.", "materials": [{ "type": "video", "title": "JavaScript Full Course for Beginners", "duration": "8h 50min", "youtube_id": "lfmg-EJ8gm4", "description": "Complete JavaScript from Bro Code." }] },
+      { "id": "web-lec-4", "order": 4, "title": "Responsive Design & Flexbox", "duration": "3 hours", "description": "Build sites that look perfect on any screen.", "materials": [{ "type": "video", "title": "Flexbox CSS in 20 Minutes", "duration": "20min", "youtube_id": "JJSoEo8JSnc", "description": "The clearest Flexbox tutorial on YouTube." }] },
+      { "id": "web-lec-5", "order": 5, "title": "Deploy Your Website", "duration": "2 hours", "description": "Get your site live for free using GitHub Pages.", "materials": [{ "type": "video", "title": "Deploy a Website for Free", "duration": "30min", "youtube_id": "SKXkC4SqtRk", "description": "Your site, live, in 30 minutes." }] }
+    ]
+  },
+  {
+    "id": "biology-foundations",
+    "title": "Biology: From Cells to Ecosystems",
+    "subtitle": "Understanding life from molecules to the biosphere.",
+    "image": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&h=400&fit=crop",
+    "teacher": { "name": "Dr. Amara Osei", "institution": "University of Nairobi", "flag": "🇰🇪", "bio": "PhD Botany. Researches plant adaptation in sub-Saharan Africa." },
+    "subject": "Biology",
+    "level": "beginner",
+    "duration": "6 weeks",
+    "total_hours": 24,
+    "certificate": true,
+    "certificate_name": "Certificate in Biological Sciences",
+    "sponsor": { "name": "Bayer", "tagline": "Investing in the scientists of tomorrow." },
+    "description": "A rigorous introduction to biology — from how molecules form life to how ecosystems maintain balance.",
+    "what_you_learn": ["Cell structure and function", "DNA, RNA, and protein synthesis", "Photosynthesis and cellular respiration", "Evolution and natural selection", "Ecosystems and the biosphere"],
+    "lectures": [
+      { "id": "bio-lec-1", "order": 1, "title": "The Cell — Unit of Life", "duration": "3.5 hours", "description": "What is a cell? Prokaryotes vs eukaryotes.", "materials": [{ "type": "video", "title": "CrashCourse Biology — Cell Structure", "duration": "14min", "youtube_id": "URUJD5NEXC8", "description": "Fast, visual, fun. CrashCourse Biology at its best." }, { "type": "paper", "title": "The Structure of the Cell Membrane", "author": "Singer & Nicolson, 1972", "url": "https://www.science.org/doi/10.1126/science.175.4023.720", "description": "The fluid mosaic model." }] },
+      { "id": "bio-lec-2", "order": 2, "title": "DNA and the Central Dogma", "duration": "4 hours", "description": "How genetic information is stored, copied, and expressed.", "materials": [{ "type": "video", "title": "DNA Structure and Replication — CrashCourse", "duration": "12min", "youtube_id": "8kK2zwjRV0M", "description": "The double helix explained." }, { "type": "paper", "title": "A Structure for Deoxyribose Nucleic Acid", "author": "Watson & Crick, 1953", "url": "https://www.nature.com/articles/171737a0", "description": "The most important paper in biology." }] },
+      { "id": "bio-lec-3", "order": 3, "title": "Photosynthesis and Energy", "duration": "3.5 hours", "description": "How plants capture sunlight and convert it to chemical energy.", "materials": [{ "type": "video", "title": "Photosynthesis — CrashCourse Biology", "duration": "13min", "youtube_id": "sQK3Yr4Sc_k", "description": "Fast, visual overview of photosynthesis." }] },
+      { "id": "bio-lec-4", "order": 4, "title": "Evolution and Natural Selection", "duration": "4 hours", "description": "Darwin's insight and 160 years of evidence.", "materials": [{ "type": "video", "title": "Natural Selection — CrashCourse", "duration": "12min", "youtube_id": "aTftyFboC_M", "description": "Natural selection explained with clear examples." }] },
+      { "id": "bio-lec-5", "order": 5, "title": "Ecosystems and the Biosphere", "duration": "3 hours", "description": "Energy flow, nutrient cycles, and ecosystem balance.", "materials": [{ "type": "video", "title": "Ecosystem Ecology — CrashCourse", "duration": "11min", "youtube_id": "K2SqPLCJqpQ", "description": "Food webs, energy pyramids, nutrient cycles." }] }
+    ]
+  },
+  {
+    "id": "math-foundations",
+    "title": "Mathematics for Everyone",
+    "subtitle": "Algebra, calculus, and statistics from first principles.",
+    "image": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&h=400&fit=crop",
+    "teacher": { "name": "Prof. Priya Sharma", "institution": "IIT Bombay", "flag": "🇮🇳", "bio": "Professor of Applied Mathematics. Known for making calculus intuitive." },
+    "subject": "Mathematics",
+    "level": "beginner",
+    "duration": "10 weeks",
+    "total_hours": 40,
+    "certificate": true,
+    "certificate_name": "Certificate in Mathematical Foundations",
+    "sponsor": { "name": "SAP", "tagline": "Mathematics powers everything we build." },
+    "description": "Math doesn't have to be intimidating. Visual intuition first, formulas second.",
+    "what_you_learn": ["Algebraic thinking and equation solving", "Functions and their graphs", "Derivatives and what they mean geometrically", "Integration and area under curves", "Probability and statistical reasoning"],
+    "lectures": [
+      { "id": "math-lec-1", "order": 1, "title": "Algebra and Functions", "duration": "4 hours", "description": "Variables, equations, functions — the language of mathematics.", "materials": [{ "type": "video", "title": "Essence of Algebra — 3Blue1Brown", "duration": "12min", "youtube_id": "fNk_zzaMoSs", "description": "Visual, intuitive algebra." }] },
+      { "id": "math-lec-2", "order": 2, "title": "The Derivative — Change and Motion", "duration": "5 hours", "description": "The geometric meaning of the derivative.", "materials": [{ "type": "video", "title": "Essence of Calculus — 3Blue1Brown", "duration": "17min", "youtube_id": "WUvTyaaNkzM", "description": "The single best introduction to calculus ever made." }, { "type": "book", "title": "Calculus Made Easy — Chapters 1-5", "author": "Silvanus Thompson (free)", "url": "https://www.gutenberg.org/ebooks/33283", "description": "The most readable calculus book ever written." }] },
+      { "id": "math-lec-3", "order": 3, "title": "Integration — Area and Accumulation", "duration": "4 hours", "description": "The fundamental theorem of calculus.", "materials": [{ "type": "video", "title": "Integration and the Fundamental Theorem — 3Blue1Brown", "duration": "20min", "youtube_id": "rfG8ce4nNh0", "description": "The most beautiful result in calculus, made visual." }] },
+      { "id": "math-lec-4", "order": 4, "title": "Probability and Counting", "duration": "3 hours", "description": "How to reason about uncertainty.", "materials": [{ "type": "video", "title": "Probability — CrashCourse Statistics", "duration": "12min", "youtube_id": "OyddY7DlV58", "description": "Intuitive introduction to probability theory." }] },
+      { "id": "math-lec-5", "order": 5, "title": "Statistics and Data Reasoning", "duration": "4 hours", "description": "How to read data, spot patterns, and not be fooled.", "materials": [{ "type": "video", "title": "Statistics Fundamentals — StatQuest", "duration": "21min", "youtube_id": "qBigTkBLU6g", "description": "Mean, variance, distributions — explained with clarity." }] }
+    ]
+  },
+  {
+    "id": "world-history",
+    "title": "World History: Ancient to Modern",
+    "subtitle": "The full sweep of human civilization in 5 lectures.",
+    "image": "https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=800&h=400&fit=crop",
+    "teacher": { "name": "Prof. John Green", "institution": "CrashCourse / Complexly", "flag": "🇺🇸", "bio": "Author and co-creator of CrashCourse, watched by 50M+ students." },
+    "subject": "History",
+    "level": "beginner",
+    "duration": "5 weeks",
+    "total_hours": 20,
+    "certificate": true,
+    "certificate_name": "Certificate in World History",
+    "sponsor": { "name": "Deutsche Bank", "tagline": "Understanding the past to build the future." },
+    "description": "From the first human civilizations to the modern world — a fast, engaging sweep through history that makes the present make sense.",
+    "what_you_learn": ["Ancient Mesopotamia, Egypt, and Greece", "The Roman Empire and its fall", "The age of exploration and colonialism", "Industrial Revolution and world wars", "The modern world and what comes next"],
+    "lectures": [
+      { "id": "hist-lec-1", "order": 1, "title": "The Agricultural Revolution", "duration": "3 hours", "description": "How farming changed everything about human society.", "materials": [{ "type": "video", "title": "The Agricultural Revolution — CrashCourse World History #1", "duration": "14min", "youtube_id": "Yocja_N5s1I", "description": "John Green on how agriculture created civilization." }] },
+      { "id": "hist-lec-2", "order": 2, "title": "Ancient Greece and Rome", "duration": "4 hours", "description": "Democracy, philosophy, and empire.", "materials": [{ "type": "video", "title": "Ancient Greece — CrashCourse World History #4", "duration": "12min", "youtube_id": "d2lJUOv0hLA", "description": "Democracy, Socrates, and the birth of Western civilization." }, { "type": "video", "title": "The Roman Empire — CrashCourse World History #10", "duration": "14min", "youtube_id": "o0KH5OdGLEU", "description": "How Rome built and lost the greatest empire of antiquity." }] },
+      { "id": "hist-lec-3", "order": 3, "title": "The Age of Exploration", "duration": "3 hours", "description": "When Europeans sailed the world — and what it cost.", "materials": [{ "type": "video", "title": "The Columbian Exchange — CrashCourse #23", "duration": "12min", "youtube_id": "HQPA5ozvAHg", "description": "The exchange of goods, diseases, and ideas after 1492." }] },
+      { "id": "hist-lec-4", "order": 4, "title": "The Industrial Revolution", "duration": "4 hours", "description": "How machines transformed society.", "materials": [{ "type": "video", "title": "Coal, Steam, and The Industrial Revolution — CrashCourse #32", "duration": "13min", "youtube_id": "zhL5DCizj5c", "description": "The revolution that created the modern world." }] },
+      { "id": "hist-lec-5", "order": 5, "title": "The 20th Century", "duration": "5 hours", "description": "Two world wars, decolonization, and globalization.", "materials": [{ "type": "video", "title": "World War I — CrashCourse World History #36", "duration": "13min", "youtube_id": "Cd2ch4XV84s", "description": "How a single assassination started a world war." }, { "type": "video", "title": "World War II — CrashCourse World History #38", "duration": "14min", "youtube_id": "Q78COTwT7nE", "description": "The deadliest conflict in human history." }] }
+    ]
+  },
+  {
+    "id": "physics-mechanics",
+    "title": "Physics: Forces, Motion, and Energy",
+    "subtitle": "How the universe moves, from Newton to Einstein.",
+    "image": "https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?w=800&h=400&fit=crop",
+    "teacher": { "name": "Prof. Walter Lewin", "institution": "MIT Physics", "flag": "🇺🇸", "bio": "Legendary MIT physics professor. His lectures have millions of views worldwide." },
+    "subject": "Physics",
+    "level": "beginner",
+    "duration": "7 weeks",
+    "total_hours": 28,
+    "certificate": true,
+    "certificate_name": "Certificate in Physics: Mechanics",
+    "sponsor": { "name": "Siemens", "tagline": "Physics is the engine of innovation." },
+    "description": "Physics from first principles — Newton's laws to energy, waves, and Einstein's relativity. No calculus required.",
+    "what_you_learn": ["Newton's three laws of motion", "Gravity and orbital mechanics", "Work, energy, and conservation laws", "Waves and sound", "Introduction to special relativity"],
+    "lectures": [
+      { "id": "phys-lec-1", "order": 1, "title": "Newton's Laws of Motion", "duration": "4 hours", "description": "The three laws that govern all motion.", "materials": [{ "type": "video", "title": "Newton's Laws — CrashCourse Physics #5", "duration": "9min", "youtube_id": "bn4HdGDKcm0", "description": "Newton's three laws explained clearly with examples." }, { "type": "video", "title": "MIT Physics Lecture 1 — Walter Lewin", "duration": "50min", "youtube_id": "wWnfJ0-xXRE", "description": "The legendary Walter Lewin on measurement." }] },
+      { "id": "phys-lec-2", "order": 2, "title": "Gravity and Orbits", "duration": "4 hours", "description": "From falling apples to planetary orbits.", "materials": [{ "type": "video", "title": "Gravity — CrashCourse Physics #8", "duration": "9min", "youtube_id": "45Us2ZoGFHk", "description": "Gravity from Newton to escape velocity." }] },
+      { "id": "phys-lec-3", "order": 3, "title": "Work, Energy, Power", "duration": "4 hours", "description": "Conservation of energy — the universe's most fundamental law.", "materials": [{ "type": "video", "title": "Work, Energy and Power — CrashCourse Physics #9", "duration": "9min", "youtube_id": "w4QFJb9a8vo", "description": "Energy conservation explained." }] },
+      { "id": "phys-lec-4", "order": 4, "title": "Waves and Sound", "duration": "3 hours", "description": "How energy travels through matter and space.", "materials": [{ "type": "video", "title": "Waves and Sound — CrashCourse Physics #16", "duration": "9min", "youtube_id": "Rbuhdo0AZDU", "description": "Wavelength, frequency, and why music exists." }] },
+      { "id": "phys-lec-5", "order": 5, "title": "Special Relativity", "duration": "4 hours", "description": "Einstein's revolutionary insight.", "materials": [{ "type": "video", "title": "Special Relativity — CrashCourse Physics #42", "duration": "10min", "youtube_id": "AInCqm5nCzw", "description": "E=mc² and why nothing travels faster than light." }, { "type": "paper", "title": "On the Electrodynamics of Moving Bodies", "author": "Albert Einstein, 1905", "url": "https://www.fourmilab.ch/etexts/einstein/specrel/www/", "description": "The original special relativity paper." }] }
+    ]
+  },
+  {
+    "id": "chemistry-intro",
+    "title": "Chemistry: Atoms, Reactions, and Life",
+    "subtitle": "Understanding matter at its most fundamental level.",
+    "image": "https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?w=800&h=400&fit=crop",
+    "teacher": { "name": "Prof. Hank Green", "institution": "CrashCourse / Complexly", "flag": "🇺🇸", "bio": "Science communicator and co-creator of CrashCourse. Beloved by millions of students." },
+    "subject": "Chemistry",
+    "level": "beginner",
+    "duration": "6 weeks",
+    "total_hours": 24,
+    "certificate": true,
+    "certificate_name": "Certificate in Introductory Chemistry",
+    "sponsor": { "name": "Bayer", "tagline": "Science for a better life." },
+    "description": "Chemistry is the central science connecting physics to biology. Atoms, bonds, reactions, and why chemistry matters in daily life.",
+    "what_you_learn": ["Atomic structure and the periodic table", "Chemical bonds and compounds", "Balancing equations and stoichiometry", "Acids, bases, and pH", "Organic chemistry basics"],
+    "lectures": [
+      { "id": "chem-lec-1", "order": 1, "title": "Atoms and the Periodic Table", "duration": "4 hours", "description": "Everything is made of atoms. Here's how they're organized.", "materials": [{ "type": "video", "title": "The Periodic Table — CrashCourse Chemistry #4", "duration": "11min", "youtube_id": "0RRVV4Diomg", "description": "The periodic table explained — history, structure, and logic." }] },
+      { "id": "chem-lec-2", "order": 2, "title": "Chemical Bonds", "duration": "4 hours", "description": "How atoms stick together to form everything you can touch.", "materials": [{ "type": "video", "title": "Chemical Bonding — CrashCourse Chemistry #6", "duration": "11min", "youtube_id": "QqjcCvzWwww", "description": "Ionic, covalent, and metallic bonds explained." }] },
+      { "id": "chem-lec-3", "order": 3, "title": "Chemical Reactions", "duration": "4 hours", "description": "Atoms rearrange to form new substances.", "materials": [{ "type": "video", "title": "Balancing Chemical Equations — CrashCourse Chemistry #11", "duration": "10min", "youtube_id": "RnGu3xO2h74", "description": "The law of conservation of mass." }] },
+      { "id": "chem-lec-4", "order": 4, "title": "Acids, Bases, and pH", "duration": "3 hours", "description": "Why lemon is sour and soap is slippery.", "materials": [{ "type": "video", "title": "Acids and Bases — CrashCourse Chemistry #19", "duration": "13min", "youtube_id": "DupXDD87oHU", "description": "Acids, bases, and the pH scale explained." }] },
+      { "id": "chem-lec-5", "order": 5, "title": "Organic Chemistry", "duration": "4 hours", "description": "Carbon — the backbone of all life and most modern materials.", "materials": [{ "type": "video", "title": "Carbon — CrashCourse Chemistry #47", "duration": "10min", "youtube_id": "vXn51UJTMk8", "description": "Why carbon is special and how it forms life." }] }
+    ]
+  },
+  {
+    "id": "economics-basics",
+    "title": "Economics and Financial Literacy",
+    "subtitle": "How money, markets, and incentives shape the world.",
+    "image": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=400&fit=crop",
+    "teacher": { "name": "Prof. Adriene Hill", "institution": "CrashCourse / PBS", "flag": "🇺🇸", "bio": "Economics journalist and educator. Made economics accessible to millions." },
+    "subject": "Economics",
+    "level": "beginner",
+    "duration": "6 weeks",
+    "total_hours": 22,
+    "certificate": true,
+    "certificate_name": "Certificate in Economics and Financial Literacy",
+    "sponsor": { "name": "Deutsche Bank", "tagline": "Financial knowledge is a superpower." },
+    "description": "Understanding economics means understanding why the world works the way it does — prices, jobs, inflation, taxes, and choices that shape your life.",
+    "what_you_learn": ["Supply and demand", "GDP, inflation, and unemployment", "Personal budgeting and saving", "How banking and credit work", "Global trade and development"],
+    "lectures": [
+      { "id": "econ-lec-1", "order": 1, "title": "Supply and Demand", "duration": "4 hours", "description": "The most powerful idea in economics.", "materials": [{ "type": "video", "title": "Supply and Demand — CrashCourse Economics #4", "duration": "10min", "youtube_id": "g9aDizJpd0s", "description": "How prices emerge from buyers and sellers." }] },
+      { "id": "econ-lec-2", "order": 2, "title": "GDP and Economic Growth", "duration": "3 hours", "description": "How we measure how rich a country is.", "materials": [{ "type": "video", "title": "GDP: What Is It? — CrashCourse Economics #5", "duration": "11min", "youtube_id": "VGbBEAepGhQ", "description": "Gross Domestic Product explained from scratch." }] },
+      { "id": "econ-lec-3", "order": 3, "title": "Inflation and Unemployment", "duration": "3 hours", "description": "Two economic problems — what causes them.", "materials": [{ "type": "video", "title": "Inflation and Bubbles — CrashCourse Economics #7", "duration": "10min", "youtube_id": "gLndKCkrWJ4", "description": "Inflation, hyperinflation, and economic bubbles." }] },
+      { "id": "econ-lec-4", "order": 4, "title": "Banking and Credit", "duration": "4 hours", "description": "How banks create money and how debt works.", "materials": [{ "type": "video", "title": "Money and Finance — CrashCourse Economics #11", "duration": "10min", "youtube_id": "mjNs9pc0H3E", "description": "How modern banking creates money." }] },
+      { "id": "econ-lec-5", "order": 5, "title": "Personal Finance", "duration": "4 hours", "description": "Budgeting, saving, investing — the skills schools don't teach.", "materials": [{ "type": "video", "title": "Personal Finance — CrashCourse Economics #26", "duration": "10min", "youtube_id": "xAqCEBFGdYk", "description": "Budgeting, compound interest, and why starting early matters." }] }
+    ]
+  },
+  {
+    "id": "data-science",
+    "title": "Data Science Fundamentals",
+    "subtitle": "Turn raw data into decisions with Python and statistics.",
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
+    "teacher": { "name": "Prof. Jake VanderPlas", "institution": "University of Washington", "flag": "🇺🇸", "bio": "Author of Python Data Science Handbook. Core contributor to scientific Python ecosystem." },
+    "subject": "Data Science",
+    "level": "intermediate",
+    "duration": "8 weeks",
+    "total_hours": 32,
+    "certificate": true,
+    "certificate_name": "Certificate in Data Science",
+    "sponsor": { "name": "SAP", "tagline": "Data is the new competitive advantage." },
+    "description": "Data science is the skill of the decade. Learn to collect, clean, visualize, and analyze data using Python.",
+    "what_you_learn": ["Python for data analysis (pandas, numpy)", "Data visualization (matplotlib)", "Statistical thinking and hypothesis testing", "Machine learning basics", "Real-world data projects"],
+    "lectures": [
+      { "id": "ds-lec-1", "order": 1, "title": "Python for Data — NumPy and Pandas", "duration": "5 hours", "description": "The two libraries you need to work with data in Python.", "materials": [{ "type": "video", "title": "Python NumPy Tutorial for Beginners", "duration": "58min", "youtube_id": "QUT1VHiLmmI", "description": "NumPy — the foundation of all Python data science." }] },
+      { "id": "ds-lec-2", "order": 2, "title": "Data Visualization", "duration": "4 hours", "description": "Charts, graphs, and visual stories from data.", "materials": [{ "type": "video", "title": "Matplotlib Tutorial (Corey Schafer)", "duration": "1h 0min", "youtube_id": "UO98lJQ3QGI", "description": "Complete matplotlib walkthrough." }] },
+      { "id": "ds-lec-3", "order": 3, "title": "Statistics for Data Science", "duration": "5 hours", "description": "The statistical thinking that separates good from bad data science.", "materials": [{ "type": "video", "title": "StatQuest — Statistics Fundamentals", "duration": "21min", "youtube_id": "qBigTkBLU6g", "description": "Stats explained clearly by StatQuest." }] },
+      { "id": "ds-lec-4", "order": 4, "title": "Machine Learning Basics", "duration": "5 hours", "description": "What ML actually is — and how to run your first model.", "materials": [{ "type": "video", "title": "Machine Learning for Beginners — StatQuest", "duration": "15min", "youtube_id": "Gv9_4yMHFhI", "description": "Decision trees and the intuition behind ML." }] },
+      { "id": "ds-lec-5", "order": 5, "title": "Real Data Project", "duration": "5 hours", "description": "Analyze a real dataset end-to-end.", "materials": [{ "type": "video", "title": "Data Science Project Walkthrough", "duration": "1h 30min", "youtube_id": "MpF9HENQjDo", "description": "Full data science project from start to finish." }] }
+    ]
+  },
+  {
+    "id": "machine-learning",
+    "title": "Introduction to Machine Learning",
+    "subtitle": "How computers learn from data — without being explicitly programmed.",
+    "image": "https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800&h=400&fit=crop",
+    "teacher": { "name": "Prof. Andrew Ng", "institution": "Stanford / DeepLearning.AI", "flag": "🇺🇸", "bio": "Co-founder of Coursera and Google Brain. Taught ML to 8M+ students." },
+    "subject": "Data Science",
+    "level": "intermediate",
+    "duration": "10 weeks",
+    "total_hours": 40,
+    "certificate": true,
+    "certificate_name": "Certificate in Machine Learning",
+    "sponsor": { "name": "Google", "tagline": "AI for everyone, everywhere." },
+    "description": "Learn linear regression, neural networks, and how to apply ML to real problems — at your own pace, for free.",
+    "what_you_learn": ["Linear and logistic regression", "Neural networks and deep learning", "Bias-variance tradeoff", "Practical ML workflow", "Computer vision and NLP basics"],
+    "lectures": [
+      { "id": "ml-lec-1", "order": 1, "title": "What is Machine Learning?", "duration": "3 hours", "description": "Supervised vs unsupervised learning.", "materials": [{ "type": "video", "title": "Machine Learning — CrashCourse AI #2", "duration": "11min", "youtube_id": "QghjaS0WQQU", "description": "What machine learning is and how it works." }] },
+      { "id": "ml-lec-2", "order": 2, "title": "Linear Regression", "duration": "4 hours", "description": "The simplest and most important ML model.", "materials": [{ "type": "video", "title": "StatQuest — Linear Regression", "duration": "15min", "youtube_id": "nk2CQITm_eo", "description": "Linear regression explained with visual clarity." }] },
+      { "id": "ml-lec-3", "order": 3, "title": "Neural Networks", "duration": "5 hours", "description": "How layers of simple math create intelligent systems.", "materials": [{ "type": "video", "title": "Neural Networks — 3Blue1Brown Chapter 1", "duration": "19min", "youtube_id": "aircAruvnKk", "description": "The best visual explanation of neural networks that exists." }] },
+      { "id": "ml-lec-4", "order": 4, "title": "Training and Overfitting", "duration": "4 hours", "description": "Why models fail and how to make them generalize.", "materials": [{ "type": "video", "title": "StatQuest — Overfitting", "duration": "12min", "youtube_id": "EuBBz3bI-aA", "description": "The most important concept in applied ML." }] },
+      { "id": "ml-lec-5", "order": 5, "title": "ML in the Real World", "duration": "4 hours", "description": "Computer vision, NLP, and deploying a model.", "materials": [{ "type": "video", "title": "Deep Learning in 5 Minutes", "duration": "5min", "youtube_id": "6M5VXKLf4D4", "description": "A quick look at real-world deep learning applications." }] }
+    ]
+  },
+  {
+    "id": "psychology-intro",
+    "title": "Introduction to Psychology",
+    "subtitle": "Why humans think, feel, and behave the way they do.",
+    "image": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=400&fit=crop",
+    "teacher": { "name": "Prof. Paul Bloom", "institution": "Yale University", "flag": "🇺🇸", "bio": "Professor at Yale. Author of 'How Pleasure Works'. Taught the most popular Ivy League online course." },
+    "subject": "Psychology",
+    "level": "beginner",
+    "duration": "6 weeks",
+    "total_hours": 22,
+    "certificate": true,
+    "certificate_name": "Certificate in Introductory Psychology",
+    "sponsor": { "name": "UNICEF", "tagline": "Understanding people creates a better world." },
+    "description": "From perception and memory to social influence and mental health — tools to understand human behavior.",
+    "what_you_learn": ["How perception and memory work", "Emotion, motivation, and stress", "Development across the lifespan", "Social psychology and influence", "Mental health and well-being"],
+    "lectures": [
+      { "id": "psych-lec-1", "order": 1, "title": "What is Psychology?", "duration": "3 hours", "description": "The science of mind and behavior.", "materials": [{ "type": "video", "title": "Introduction to Psychology — CrashCourse #1", "duration": "11min", "youtube_id": "vo4pMVb0R6M", "description": "What psychology is and how it became a science." }] },
+      { "id": "psych-lec-2", "order": 2, "title": "Memory and Learning", "duration": "4 hours", "description": "How we store, retrieve, and forget information.", "materials": [{ "type": "video", "title": "Memory — CrashCourse Psychology #13", "duration": "10min", "youtube_id": "bSycdIx-C48", "description": "How memory works and why we forget." }] },
+      { "id": "psych-lec-3", "order": 3, "title": "Emotion and Motivation", "duration": "3 hours", "description": "Why we feel what we feel.", "materials": [{ "type": "video", "title": "Emotion, Stress and Health — CrashCourse Psychology #26", "duration": "10min", "youtube_id": "2XFjVGmOGS4", "description": "Emotions, their biological basis, and stress." }] },
+      { "id": "psych-lec-4", "order": 4, "title": "Social Psychology", "duration": "4 hours", "description": "How other people influence our beliefs and choices.", "materials": [{ "type": "video", "title": "Social Thinking — CrashCourse Psychology #37", "duration": "10min", "youtube_id": "KA74JCoXBBo", "description": "Conformity, obedience, and social influence." }] },
+      { "id": "psych-lec-5", "order": 5, "title": "Mental Health", "duration": "4 hours", "description": "Understanding psychological disorders and well-being.", "materials": [{ "type": "video", "title": "Psychological Disorders — CrashCourse Psychology #28", "duration": "11min", "youtube_id": "Z4nxbFiZFGQ", "description": "How psychological disorders are defined and understood." }] }
+    ]
+  },
+  {
+    "id": "philosophy-intro",
+    "title": "Introduction to Philosophy",
+    "subtitle": "The oldest questions — and why they still matter.",
+    "image": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=400&fit=crop",
+    "teacher": { "name": "Prof. Tamar Gendler", "institution": "Yale University", "flag": "🇺🇸", "bio": "Dean of Yale Faculty of Arts and Sciences. One of the most celebrated philosophy educators alive." },
+    "subject": "Philosophy",
+    "level": "beginner",
+    "duration": "5 weeks",
+    "total_hours": 18,
+    "certificate": true,
+    "certificate_name": "Certificate in Philosophy",
+    "sponsor": { "name": "UNICEF", "tagline": "Critical thinking changes the world." },
+    "description": "What is knowledge? What is morality? Does free will exist? Philosophy gives you tools to think more clearly.",
+    "what_you_learn": ["Epistemology — what is knowledge?", "Ethics and moral philosophy", "Philosophy of mind and consciousness", "Logic and critical reasoning", "Political philosophy"],
+    "lectures": [
+      { "id": "phil-lec-1", "order": 1, "title": "What is Philosophy?", "duration": "3 hours", "description": "Why philosophy matters and what it's actually doing.", "materials": [{ "type": "video", "title": "Crash Course Philosophy #1 — What is Philosophy?", "duration": "9min", "youtube_id": "1A_CAkYt3GY", "description": "The clearest introduction to philosophy ever made." }] },
+      { "id": "phil-lec-2", "order": 2, "title": "Ethics — Right and Wrong", "duration": "4 hours", "description": "Utilitarianism, deontology, and virtue ethics.", "materials": [{ "type": "video", "title": "Ethical Theories — CrashCourse Philosophy #38", "duration": "10min", "youtube_id": "ibc8HEEYAXM", "description": "The three main ethical frameworks compared." }] },
+      { "id": "phil-lec-3", "order": 3, "title": "Epistemology — What is Knowledge?", "duration": "3 hours", "description": "What does it mean to 'know' something?", "materials": [{ "type": "video", "title": "Rene Descartes and Epistemology — CrashCourse #5", "duration": "9min", "youtube_id": "OVNOgSCGeCg", "description": "Descartes' method of doubt." }] },
+      { "id": "phil-lec-4", "order": 4, "title": "Free Will and Determinism", "duration": "4 hours", "description": "Are you really making choices?", "materials": [{ "type": "video", "title": "Free Will — CrashCourse Philosophy #24", "duration": "9min", "youtube_id": "vCGtkDzELAI", "description": "The free will debate from every angle." }] },
+      { "id": "phil-lec-5", "order": 5, "title": "Political Philosophy", "duration": "4 hours", "description": "What makes government legitimate? What is justice?", "materials": [{ "type": "video", "title": "Political Philosophy — CrashCourse Philosophy #40", "duration": "9min", "youtube_id": "-FbIs0Ryyb8", "description": "Hobbes, Locke, Rousseau, and Rawls on the just society." }] }
+    ]
+  },
+  {
+    "id": "environmental-science",
+    "title": "Environmental Science and Climate",
+    "subtitle": "Understanding the planet and the climate crisis.",
+    "image": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=400&fit=crop",
+    "teacher": { "name": "Dr. Kate Marvel", "institution": "NASA / Columbia University", "flag": "🇺🇸", "bio": "Climate scientist at NASA. One of the clearest communicators on climate science." },
+    "subject": "Environmental Science",
+    "level": "beginner",
+    "duration": "5 weeks",
+    "total_hours": 18,
+    "certificate": true,
+    "certificate_name": "Certificate in Environmental Science",
+    "sponsor": { "name": "UNICEF", "tagline": "The planet is everyone's classroom." },
+    "description": "Climate change is the defining challenge of our time. This course gives you the science to understand it.",
+    "what_you_learn": ["Earth's climate system", "Greenhouse gases and the carbon cycle", "Climate change evidence and projections", "Biodiversity and ecosystem services", "Renewable energy and solutions"],
+    "lectures": [
+      { "id": "env-lec-1", "order": 1, "title": "Earth's Climate System", "duration": "3 hours", "description": "How the atmosphere, oceans, and land create climate.", "materials": [{ "type": "video", "title": "Climate Change 101 — National Geographic", "duration": "4min", "youtube_id": "EtW2rrLHs08", "description": "Clear, concise overview of the climate crisis." }] },
+      { "id": "env-lec-2", "order": 2, "title": "The Carbon Cycle", "duration": "3 hours", "description": "How carbon moves through living and non-living systems.", "materials": [{ "type": "video", "title": "The Carbon Cycle — CrashCourse Ecology #5", "duration": "12min", "youtube_id": "E8Y6L5TI_94", "description": "Carbon flows through Earth's systems." }] },
+      { "id": "env-lec-3", "order": 3, "title": "Biodiversity", "duration": "4 hours", "description": "Why biodiversity matters and why it's disappearing.", "materials": [{ "type": "video", "title": "Biodiversity and Conservation — CrashCourse Ecology #9", "duration": "12min", "youtube_id": "GK_vRtHJZu4", "description": "The sixth mass extinction and why it matters." }] },
+      { "id": "env-lec-4", "order": 4, "title": "Climate Solutions", "duration": "4 hours", "description": "Renewable energy, carbon capture, and what can actually be done.", "materials": [{ "type": "video", "title": "Is It Too Late to Stop Climate Change? — Kurzgesagt", "duration": "10min", "youtube_id": "wbR-5mHI6bo", "description": "An honest look at where we stand and what's possible." }] },
+      { "id": "env-lec-5", "order": 5, "title": "What Can You Do?", "duration": "3 hours", "description": "Individual action, political action, and why both matter.", "materials": [{ "type": "video", "title": "Renewable Energy 101 — National Geographic", "duration": "3min", "youtube_id": "1kUE0BZtTRc", "description": "Solar, wind, and the energy transition." }] }
+    ]
+  },
+  {
+    "id": "creative-writing",
+    "title": "Creative Writing and Storytelling",
+    "subtitle": "Tell stories that move people.",
+    "image": "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=400&fit=crop",
+    "teacher": { "name": "Brandon Sanderson", "institution": "Brigham Young University", "flag": "🇺🇸", "bio": "Bestselling fantasy novelist. Author of The Stormlight Archive. Taught creative writing at BYU for 15 years." },
+    "subject": "Creative Writing",
+    "level": "beginner",
+    "duration": "8 weeks",
+    "total_hours": 28,
+    "certificate": true,
+    "certificate_name": "Certificate in Creative Writing",
+    "sponsor": { "name": "Deutsche Bank", "tagline": "Stories connect us all." },
+    "description": "Brandon Sanderson's legendary BYU creative writing course — free, filmed, and available to everyone.",
+    "what_you_learn": ["Story structure and plot", "Character development and motivation", "World-building", "Dialogue and voice", "Editing and revision"],
+    "lectures": [
+      { "id": "write-lec-1", "order": 1, "title": "Becoming a Writer", "duration": "4 hours", "description": "What it means to commit to writing.", "materials": [{ "type": "video", "title": "Brandon Sanderson Lecture 1 — Becoming a Writer", "duration": "1h 22min", "youtube_id": "N4ZDBkSfBe8", "description": "Brandon Sanderson's full BYU creative writing lecture 1." }] },
+      { "id": "write-lec-2", "order": 2, "title": "Characters", "duration": "4 hours", "description": "How to build characters that feel real.", "materials": [{ "type": "video", "title": "Brandon Sanderson Lecture 3 — Characters", "duration": "1h 23min", "youtube_id": "bpqiGXFgW0Y", "description": "Character motivation, wants vs needs, and character arcs." }] },
+      { "id": "write-lec-3", "order": 3, "title": "World-Building", "duration": "5 hours", "description": "Creating believable, consistent worlds.", "materials": [{ "type": "video", "title": "Brandon Sanderson Lecture 6 — World Building", "duration": "1h 22min", "youtube_id": "V2KpWOLTXx8", "description": "How to build a world readers want to live in." }] },
+      { "id": "write-lec-4", "order": 4, "title": "Plot and Structure", "duration": "4 hours", "description": "Story structure that works across every genre.", "materials": [{ "type": "video", "title": "Brandon Sanderson Lecture 4 — Plot Structure", "duration": "1h 24min", "youtube_id": "jrIogch5DBU", "description": "Three-act structure, the hero's journey, non-linear narratives." }] },
+      { "id": "write-lec-5", "order": 5, "title": "Revision and Publication", "duration": "4 hours", "description": "How to edit ruthlessly and what publishing looks like.", "materials": [{ "type": "video", "title": "Brandon Sanderson Lecture 12 — Revision", "duration": "1h 21min", "youtube_id": "vhKXIMSCZx8", "description": "The revision process from a bestselling novelist." }] }
+    ]
+  },
+  {
+    "id": "public-health",
+    "title": "Public Health and Epidemiology",
+    "subtitle": "How disease spreads — and how humanity fights back.",
+    "image": "https://images.unsplash.com/photo-1584515933487-779824d29309?w=800&h=400&fit=crop",
+    "teacher": { "name": "Prof. Hans Rosling", "institution": "Karolinska Institute", "flag": "🇸🇪", "bio": "Late professor of global health at Karolinska. Creator of Gapminder. His TED talks changed how the world sees data." },
+    "subject": "Public Health",
+    "level": "beginner",
+    "duration": "5 weeks",
+    "total_hours": 18,
+    "certificate": true,
+    "certificate_name": "Certificate in Public Health",
+    "sponsor": { "name": "UNICEF", "tagline": "Every child deserves to be healthy." },
+    "description": "COVID-19 revealed how little most people understand about how disease spreads. This course fixes that — with data, not fear.",
+    "what_you_learn": ["How infectious diseases spread", "R-number and herd immunity", "Vaccines and how they work", "Global health inequalities", "What public health policy can do"],
+    "lectures": [
+      { "id": "ph-lec-1", "order": 1, "title": "How Disease Spreads", "duration": "3 hours", "description": "Viruses, bacteria, R-numbers, and why some diseases spread fast.", "materials": [{ "type": "video", "title": "How Does the Coronavirus Spread? — Kurzgesagt", "duration": "8min", "youtube_id": "BtN-goy9VOY", "description": "Clear explanation of how coronaviruses spread." }] },
+      { "id": "ph-lec-2", "order": 2, "title": "Vaccines and Immunity", "duration": "4 hours", "description": "How vaccines work and why herd immunity matters.", "materials": [{ "type": "video", "title": "How do Vaccines Work? — Kurzgesagt", "duration": "8min", "youtube_id": "rb7TVW77ZCs", "description": "The best vaccine explainer on the internet." }] },
+      { "id": "ph-lec-3", "order": 3, "title": "Global Health Inequalities", "duration": "4 hours", "description": "Why people in some countries live 30 years longer than others.", "materials": [{ "type": "video", "title": "Hans Rosling — 200 Countries, 200 Years, 4 Minutes", "duration": "5min", "youtube_id": "jbkSRLYSojo", "description": "The most famous data visualization in history." }] },
+      { "id": "ph-lec-4", "order": 4, "title": "Mental Health as Public Health", "duration": "3 hours", "description": "Depression, anxiety, and the global mental health crisis.", "materials": [{ "type": "video", "title": "Depression — Why It's Different From Sadness — Kurzgesagt", "duration": "5min", "youtube_id": "XiCrniLQGYc", "description": "Kurzgesagt on depression." }] },
+      { "id": "ph-lec-5", "order": 5, "title": "The Future of Public Health", "duration": "3 hours", "description": "Antimicrobial resistance, pandemics, and what comes next.", "materials": [{ "type": "video", "title": "The next outbreak? We're not ready — Bill Gates TED", "duration": "8min", "youtube_id": "6Af6b_wyiwI", "description": "Bill Gates' 2015 warning about pandemic preparedness." }] }
+    ]
+  },
+  {
+    "id": "entrepreneurship",
+    "title": "Entrepreneurship and Business Basics",
+    "subtitle": "From idea to company — the fundamentals.",
+    "image": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&h=400&fit=crop",
+    "teacher": { "name": "Prof. Steve Blank", "institution": "Stanford / UC Berkeley", "flag": "🇺🇸", "bio": "Creator of the Customer Development methodology. Serial entrepreneur and educator at Stanford and Berkeley." },
+    "subject": "Business",
+    "level": "beginner",
+    "duration": "6 weeks",
+    "total_hours": 22,
+    "certificate": true,
+    "certificate_name": "Certificate in Entrepreneurship",
+    "sponsor": { "name": "Deutsche Bank", "tagline": "Supporting the builders of tomorrow." },
+    "description": "Starting a company is a learnable skill. Idea validation, business models, fundraising, and team building.",
+    "what_you_learn": ["How to validate a business idea", "Business model canvas", "Finding your first customers", "Unit economics and pricing", "Pitching to investors"],
+    "lectures": [
+      { "id": "ent-lec-1", "order": 1, "title": "What is a Startup?", "duration": "3 hours", "description": "Startups vs small businesses.", "materials": [{ "type": "video", "title": "How to Start a Startup — Sam Altman, Stanford", "duration": "52min", "youtube_id": "CBYhVcO4WgI", "description": "Sam Altman's classic Stanford startup lecture." }] },
+      { "id": "ent-lec-2", "order": 2, "title": "Finding a Problem Worth Solving", "duration": "4 hours", "description": "Identifying real problems that real people have.", "materials": [{ "type": "video", "title": "How to Get Startup Ideas — Y Combinator", "duration": "25min", "youtube_id": "Th8JoIan4dg", "description": "Paul Graham's framework for finding startup ideas." }] },
+      { "id": "ent-lec-3", "order": 3, "title": "Business Models", "duration": "4 hours", "description": "How does a company make money?", "materials": [{ "type": "video", "title": "Business Model Canvas Explained", "duration": "12min", "youtube_id": "IP0cUBWTgpY", "description": "Alex Osterwalder explains the Business Model Canvas." }] },
+      { "id": "ent-lec-4", "order": 4, "title": "Building a Team", "duration": "3 hours", "description": "Why co-founders matter and how to find the right people.", "materials": [{ "type": "video", "title": "Team — How to Start a Startup (YC)", "duration": "44min", "youtube_id": "CVfnkM559_4", "description": "Sam Altman and Dustin Moskovitz on team building." }] },
+      { "id": "ent-lec-5", "order": 5, "title": "Pitching and Fundraising", "duration": "4 hours", "description": "How to tell your story to investors.", "materials": [{ "type": "video", "title": "How to Design a Better Pitch Deck — YC", "duration": "22min", "youtube_id": "SB16xgtFmco", "description": "Y Combinator's definitive pitch deck guide." }] }
+    ]
+  },
+  {
+    "id": "linear-algebra",
+    "title": "Linear Algebra: The Math Behind AI",
+    "subtitle": "Vectors, matrices, and the geometry that powers machine learning.",
+    "image": "https://images.unsplash.com/photo-1509228468518-4a53f5bcab88?w=800&h=400&fit=crop",
+    "teacher": { "name": "Grant Sanderson", "institution": "3Blue1Brown", "flag": "🇺🇸", "bio": "Creator of 3Blue1Brown YouTube channel. Changed how an entire generation learns math." },
+    "subject": "Mathematics",
+    "level": "intermediate",
+    "duration": "6 weeks",
+    "total_hours": 22,
+    "certificate": true,
+    "certificate_name": "Certificate in Linear Algebra",
+    "sponsor": { "name": "Google", "tagline": "Linear algebra is the language of AI." },
+    "description": "Linear algebra is everywhere — in AI, computer graphics, physics simulations, and data science. Geometric intuition first, formulas second.",
+    "what_you_learn": ["Vectors and vector spaces", "Matrix multiplication and transformations", "Determinants and their geometric meaning", "Eigenvalues and eigenvectors", "Applications in AI and computer graphics"],
+    "lectures": [
+      { "id": "la-lec-1", "order": 1, "title": "Vectors — What They Really Are", "duration": "4 hours", "description": "Vectors from three perspectives: physics, CS, and math.", "materials": [{ "type": "video", "title": "Essence of Linear Algebra Ch.1 — 3Blue1Brown", "duration": "9min", "youtube_id": "fNk_zzaMoSs", "description": "Vectors explained geometrically." }] },
+      { "id": "la-lec-2", "order": 2, "title": "Matrices as Transformations", "duration": "4 hours", "description": "What a matrix really does to space.", "materials": [{ "type": "video", "title": "Matrix Multiplication as Composition — 3Blue1Brown", "duration": "10min", "youtube_id": "XkY2DOUCWMU", "description": "The geometric meaning of multiplying matrices." }] },
+      { "id": "la-lec-3", "order": 3, "title": "The Determinant", "duration": "3 hours", "description": "The scaling factor of a linear transformation.", "materials": [{ "type": "video", "title": "The Determinant — 3Blue1Brown", "duration": "10min", "youtube_id": "Ip3X9LOh2dk", "description": "Why determinants matter geometrically." }] },
+      { "id": "la-lec-4", "order": 4, "title": "Eigenvalues and Eigenvectors", "duration": "4 hours", "description": "The most important concept in applied linear algebra.", "materials": [{ "type": "video", "title": "Eigenvectors and Eigenvalues — 3Blue1Brown", "duration": "15min", "youtube_id": "PFDu9oVAE-g", "description": "Why eigenvalues are everywhere in applied math." }] },
+      { "id": "la-lec-5", "order": 5, "title": "Applications — AI and Graphics", "duration": "4 hours", "description": "How linear algebra powers neural networks.", "materials": [{ "type": "video", "title": "Neural Networks — the math — 3Blue1Brown", "duration": "21min", "youtube_id": "IHZwWFHWa-w", "description": "How the linear algebra in neural nets actually works." }] }
+    ]
+  },
+  {
+    "id": "art-history",
+    "title": "Art History: From Cave Paintings to Picasso",
+    "subtitle": "Understanding human creativity across 40,000 years.",
+    "image": "https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=800&h=400&fit=crop",
+    "teacher": { "name": "Dr. Beth Harris", "institution": "Khan Academy / Smarthistory", "flag": "🇺🇸", "bio": "Co-founder of Smarthistory. Former Dean at School of Visual Arts, NYC. Made art history free for everyone." },
+    "subject": "Art & Culture",
+    "level": "beginner",
+    "duration": "6 weeks",
+    "total_hours": 20,
+    "certificate": true,
+    "certificate_name": "Certificate in Art History",
+    "sponsor": { "name": "Deutsche Bank", "tagline": "Art is how civilizations understand themselves." },
+    "description": "Art is the record of what humans cared about at every point in history. A tour through 40,000 years of human creativity.",
+    "what_you_learn": ["Prehistoric and ancient art", "The Renaissance and its masters", "Impressionism and modern art", "How to read and analyze a painting", "Art as social and political expression"],
+    "lectures": [
+      { "id": "art-lec-1", "order": 1, "title": "Prehistoric and Ancient Art", "duration": "3 hours", "description": "From cave paintings to Egyptian pyramids.", "materials": [{ "type": "video", "title": "Cave Paintings — Smarthistory / Khan Academy", "duration": "6min", "youtube_id": "xAsgOi-EsT0", "description": "The oldest art in the world." }] },
+      { "id": "art-lec-2", "order": 2, "title": "The Renaissance", "duration": "4 hours", "description": "Leonardo, Michelangelo, Raphael.", "materials": [{ "type": "video", "title": "The Italian Renaissance — CrashCourse Art History #2", "duration": "12min", "youtube_id": "2xZXi-9HrNs", "description": "The rebirth of art, science, and humanism." }] },
+      { "id": "art-lec-3", "order": 3, "title": "Baroque and Rococo", "duration": "3 hours", "description": "Drama, light, and excess in 17th-century Europe.", "materials": [{ "type": "video", "title": "Baroque Art — CrashCourse Art History #10", "duration": "11min", "youtube_id": "a7bXHnJr2ks", "description": "Caravaggio, Rembrandt, and the art of drama." }] },
+      { "id": "art-lec-4", "order": 4, "title": "Impressionism and Modernism", "duration": "4 hours", "description": "How Monet, Cézanne, and Picasso broke all the rules.", "materials": [{ "type": "video", "title": "Impressionism — CrashCourse Art History #26", "duration": "12min", "youtube_id": "rTdLcT-N2HU", "description": "The movement that changed art forever." }] },
+      { "id": "art-lec-5", "order": 5, "title": "Contemporary Art", "duration": "3 hours", "description": "What is art in the 21st century?", "materials": [{ "type": "video", "title": "What is Contemporary Art? — TateShots", "duration": "6min", "youtube_id": "Xkqt7OQKP1E", "description": "Tate Modern explains contemporary art." }] }
+    ]
+  },
+  {
+    "id": "spanish-basics",
+    "title": "Spanish for Complete Beginners",
+    "subtitle": "Learn to communicate in the world's second most-spoken language.",
+    "image": "https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=800&h=400&fit=crop",
+    "teacher": { "name": "Señora Rosa Martínez", "institution": "Universidad Complutense, Madrid", "flag": "🇪🇸", "bio": "Spanish language professor. Taught Spanish to 10,000+ students across 40 countries." },
+    "subject": "Languages",
+    "level": "beginner",
+    "duration": "8 weeks",
+    "total_hours": 28,
+    "certificate": true,
+    "certificate_name": "Certificate in Spanish (A1-A2)",
+    "sponsor": { "name": "UNICEF", "tagline": "Language unlocks opportunity." },
+    "description": "Spanish is spoken by 500 million people across 20 countries. From zero to basic conversation.",
+    "what_you_learn": ["Greetings and introductions", "Numbers, days, and time", "Present tense verbs", "Shopping, travel, and daily vocabulary", "Basic conversation skills"],
+    "lectures": [
+      { "id": "esp-lec-1", "order": 1, "title": "Greetings and Introductions", "duration": "3 hours", "description": "Your first Spanish words.", "materials": [{ "type": "video", "title": "Spanish for Beginners — Lesson 1", "duration": "22min", "youtube_id": "SkBkHBEoJEQ", "description": "Your first Spanish lesson from scratch." }] },
+      { "id": "esp-lec-2", "order": 2, "title": "Numbers, Colors, and the Alphabet", "duration": "3 hours", "description": "The building blocks of any language.", "materials": [{ "type": "video", "title": "Learn Spanish — Numbers 1-100", "duration": "10min", "youtube_id": "W5LjV7jO6Hk", "description": "Count to 100 in Spanish." }] },
+      { "id": "esp-lec-3", "order": 3, "title": "Present Tense Verbs", "duration": "4 hours", "description": "The most important grammar concept in Spanish.", "materials": [{ "type": "video", "title": "Spanish Present Tense Conjugation", "duration": "20min", "youtube_id": "kX7mOGjrKng", "description": "Regular -AR, -ER, -IR verb conjugation." }] },
+      { "id": "esp-lec-4", "order": 4, "title": "Daily Life Vocabulary", "duration": "4 hours", "description": "Food, family, directions — the words you need every day.", "materials": [{ "type": "video", "title": "200 Most Common Spanish Words", "duration": "15min", "youtube_id": "bJRqBfBuFa0", "description": "The 200 most useful Spanish words with examples." }] },
+      { "id": "esp-lec-5", "order": 5, "title": "Your First Conversation", "duration": "4 hours", "description": "Put it all together and hold a real conversation.", "materials": [{ "type": "video", "title": "Basic Spanish Conversation — Real Examples", "duration": "25min", "youtube_id": "i5pSEaYbTyM", "description": "Real conversational Spanish at beginner level." }] }
+    ]
+  }
+]

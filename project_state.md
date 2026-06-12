@@ -3,23 +3,22 @@
 ## TODO
 
 ### Claude Code
-- [ ] CTO pass → prd.md + architecture.md + tasks.md
-- [ ] AI Engineer → /api/match + /api/followup + mock mode
-- [ ] Frontend Engineer → search page + results page + lesson page
-- [ ] Integration → wire frontend to backend
-- [ ] QA → Hindi flow + scope enforcement + mock mode test
+- [x] Content/data pass — seed-data/lessons.json (20 lessons, 4 subjects)
+- [x] Backend scaffold — FastAPI match + followup + mock mode + prompts + mock JSON
+- [x] Frontend lesson fetch — /lesson/[id] reads lessons.json instead of inline mock
 
 ### Hermes
-- [ ] Research Agent → research.md (competitive landscape)
-- [ ] Content Agent → seed-data/lessons.json (20 lessons)
-- [ ] Pitch Agent → pitch-prep.md (business model + Q&A)
-- [ ] Docs Agent → README.md (final submission docs)
+- [x] Research Agent — docs/research.md (competitive landscape)
+- [ ] Pitch Agent — docs/pitch-prep.md (business model + Q&A)
+- [ ] Docs Agent — README.md (final submission docs)
 
 ## IN PROGRESS
 
 ## COMPLETE
+- Backend app scaffold and mock responses
+- Frontend lesson lookup and follow-up call path
 
 ## BLOCKERS
 
 ## NEXT ACTION
-Run Claude Code CTO prompt first. Then spawn Hermes Research in parallel.
+Run frontend build/smoke test, then decide whether to add remaining Hermes docs or ship current state.
