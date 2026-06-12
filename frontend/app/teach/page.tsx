@@ -121,7 +121,8 @@ export default function TeachPage() {
         </div>
 
         {/* Course table */}
-        <div className="border border-gray-200 rounded-2xl overflow-hidden">
+        <div className="border border-gray-200 rounded-2xl overflow-x-auto">
+          <div className="min-w-[480px]">
           <div className="grid grid-cols-12 gap-2 px-5 py-3 bg-gray-50 border-b border-gray-200 text-xs font-medium text-gray-500">
             <div className="col-span-5">Course</div>
             <div className="col-span-2 text-right">Students</div>
@@ -144,6 +145,7 @@ export default function TeachPage() {
               </div>
             </div>
           ))}
+          </div>
         </div>
         <p className="text-xs text-gray-400 mt-3">Earnings are funded entirely by course sponsors. Students always learn for free.</p>
       </section>

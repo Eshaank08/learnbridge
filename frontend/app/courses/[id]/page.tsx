@@ -30,6 +30,7 @@ type Course = {
   total_hours: number;
   certificate: boolean;
   certificate_name: string;
+  image: string;
   description: string;
   what_you_learn: string[];
   teacher: { name: string; institution: string; flag: string; bio: string };
@@ -102,6 +103,13 @@ export default function CourseDetailPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           {/* Left: course info */}
           <div className="lg:col-span-2">
+            {course.image && (
+              <div className="relative h-56 sm:h-64 rounded-2xl overflow-hidden mb-6 bg-gray-100">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={course.image} alt={course.title} className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              </div>
+            )}
             <div className="flex items-center gap-2 mb-4">
               <span className="text-xs text-gray-600 bg-gray-100 px-2.5 py-1 rounded-full">
                 {course.subject}

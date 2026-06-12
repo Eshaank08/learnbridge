@@ -15,6 +15,7 @@ type Course = {
   duration: string;
   total_hours: number;
   certificate: boolean;
+  image: string;
   teacher: { name: string; institution: string; flag: string };
   sponsor: { name: string };
   lectures: { id: string }[];
@@ -147,19 +148,27 @@ export default function CoursesPage() {
               transition={{ delay: i * 0.08, duration: 0.3 }}
             >
               <Link href={`/courses/${course.id}`}>
-                <div className="group bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-lg hover:border-gray-300 transition-all h-full cursor-pointer">
-                  {/* Subject + level */}
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="text-2xl">{SUBJECT_EMOJI[course.subject] || "📖"}</span>
-                    <span className="text-xs text-gray-500">{course.subject}</span>
+                <div className="group bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg hover:border-gray-300 transition-all h-full cursor-pointer">
+                  {/* Cover image */}
+                  <div className="relative h-36 bg-gray-100 overflow-hidden">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={course.image}
+                      alt={course.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <span className="absolute top-3 left-3 text-2xl drop-shadow-sm">{SUBJECT_EMOJI[course.subject] || "📖"}</span>
                     <span
-                      className={`ml-auto text-xs px-2 py-0.5 rounded-full font-medium capitalize ${
-                        LEVEL_COLOR[course.level] || "text-gray-700 bg-gray-100"
+                      className={`absolute top-3 right-3 text-xs px-2 py-0.5 rounded-full font-medium capitalize backdrop-blur bg-white/90 ${
+                        LEVEL_COLOR[course.level] || "text-gray-700"
                       }`}
                     >
                       {course.level}
                     </span>
                   </div>
+
+                  <div className="p-6">
+                  <p className="text-xs text-gray-500 mb-2">{course.subject}</p>
 
                   {/* Title */}
                   <h2 className="text-gray-900 font-semibold text-lg mb-1 group-hover:text-gray-700 leading-snug">
@@ -194,6 +203,7 @@ export default function CoursesPage() {
 
                   {/* Sponsor */}
                   <p className="text-xs text-gray-400 mt-3">Free · Sponsored by {course.sponsor.name}</p>
+                  </div>
                 </div>
               </Link>
             </motion.div>
