@@ -82,7 +82,7 @@ export default function HomePage() {
         </Link>
         <div className="hidden sm:flex items-center gap-6">
           <Link href="/courses" className="text-gray-500 hover:text-gray-900 text-sm transition-colors">Courses</Link>
-          <Link href="/courses" className="text-gray-500 hover:text-gray-900 text-sm transition-colors">How it works</Link>
+          <Link href="/teach" className="text-gray-500 hover:text-gray-900 text-sm transition-colors">Teach</Link>
         </div>
         <div className="flex items-center gap-3">
           {user ? (
@@ -379,6 +379,7 @@ export default function HomePage() {
           <p className="text-xs text-gray-400">Free education for every student, everywhere. Built at Claude Builders Club Hackathon.</p>
           <div className="flex gap-4 text-xs text-gray-400">
             <Link href="/courses" className="hover:text-gray-700 transition-colors">Courses</Link>
+            <Link href="/teach" className="hover:text-gray-700 transition-colors">Teach</Link>
             <Link href="/auth/signup" className="hover:text-gray-700 transition-colors">Sign up</Link>
           </div>
         </div>

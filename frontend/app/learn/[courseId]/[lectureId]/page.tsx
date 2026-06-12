@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import AISidebar from "@/components/sidebar/AISidebar";
 
-type Material = { type: string; title: string; duration?: string; author?: string; url?: string; description?: string };
+type Material = { type: string; title: string; duration?: string; author?: string; url?: string; description?: string; youtube_id?: string };
 type Lecture = { id: string; order: number; title: string; duration: string; description: string; materials: Material[]; content_summary?: string };
 type Course = {
   id: string; title: string; subject: string; certificate: boolean;
@@ -21,9 +21,9 @@ type Course = {
 const MAT_ICON: Record<string, React.ElementType> = { video: Play, paper: FileText, book: Book };
 const MAT_LABEL: Record<string, string> = { video: "Video", paper: "Research Paper", book: "Book / Chapter" };
 const MAT_COLOR: Record<string, string> = {
-  video: "bg-blue-400/10 text-blue-400 border-blue-400/20",
-  paper: "bg-purple-400/10 text-purple-400 border-purple-400/20",
-  book: "bg-amber-400/10 text-amber-400 border-amber-400/20",
+  video: "bg-blue-50 text-blue-600 border-blue-200",
+  paper: "bg-purple-50 text-purple-600 border-purple-200",
+  book: "bg-amber-50 text-amber-600 border-amber-200",
 };
 
 function getCompletedLectures(courseId: string): string[] {
@@ -46,6 +46,7 @@ export default function LearnPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [completed, setCompleted] = useState<string[]>([]);
   const [activeTab, setActiveTab] = useState<"all" | "video" | "paper" | "book">("all");
+  const [activeVideo, setActiveVideo] = useState<Material | null>(null);
 
   useEffect(() => {
     fetch("/courses.json")
@@ -54,8 +55,9 @@ export default function LearnPage() {
         const c = data.find((x) => x.id === courseId);
         if (!c) return;
         setCourse(c);
-        const l = (c as any).lectures.find((x: Lecture) => x.id === lectureId);
+        const l = c.lectures.find((x: Lecture) => x.id === lectureId);
         setLecture(l || null);
+        setActiveVideo(l?.materials.find((m) => m.type === "video" && m.youtube_id) || null);
         setCompleted(getCompletedLectures(courseId));
       });
   }, [courseId, lectureId]);
@@ -66,11 +68,11 @@ export default function LearnPage() {
   };
 
   const isDone = completed.includes(lectureId);
-  const allDone = course ? (course as any).lectures.every((l: Lecture) => completed.includes(l.id)) : false;
+  const allDone = course ? course.lectures.every((l: Lecture) => completed.includes(l.id)) : false;
 
-  const currentIndex = course ? (course as any).lectures.findIndex((l: Lecture) => l.id === lectureId) : -1;
-  const nextLecture = course ? (course as any).lectures[currentIndex + 1] : null;
-  const prevLecture = course ? (course as any).lectures[currentIndex - 1] : null;
+  const currentIndex = course ? course.lectures.findIndex((l: Lecture) => l.id === lectureId) : -1;
+  const nextLecture = course ? course.lectures[currentIndex + 1] : null;
+  const prevLecture = course ? course.lectures[currentIndex - 1] : null;
 
   const filteredMaterials = lecture?.materials.filter(
     (m) => activeTab === "all" || m.type === activeTab
@@ -80,43 +82,42 @@ export default function LearnPage() {
 
   if (!course || !lecture) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
-        <div className="text-zinc-500 text-sm">Loading...</div>
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-gray-500 text-sm">Loading...</div>
       </div>
     );
   }
 
   return (
-    <div className={`min-h-screen bg-[#0a0a0a] transition-all ${sidebarOpen ? "pr-80" : ""}`}>
+    <div className={`min-h-screen bg-white text-gray-900 transition-all ${sidebarOpen ? "lg:pr-80" : ""}`}>
       {/* Nav */}
-      <nav className="border-b border-white/5 px-6 py-3.5 flex items-center justify-between sticky top-0 bg-[#0a0a0a]/95 backdrop-blur z-40">
+      <nav className="border-b border-gray-200 px-6 py-3.5 flex items-center justify-between sticky top-0 bg-white/95 backdrop-blur z-40">
         <div className="flex items-center gap-3">
-          <Link href={`/courses/${courseId}`} className="text-zinc-500 hover:text-white transition-colors">
+          <Link href={`/courses/${courseId}`} className="text-gray-400 hover:text-gray-900 transition-colors">
             <ArrowLeft className="w-4 h-4" />
           </Link>
-          <div className="hidden sm:flex items-center gap-1 text-xs text-zinc-600">
+          <div className="hidden sm:flex items-center gap-1 text-xs text-gray-400">
             <span className="truncate max-w-32">{course.title}</span>
             <ChevronRight className="w-3 h-3" />
-            <span className="text-zinc-400 truncate max-w-32">{lecture.title}</span>
+            <span className="text-gray-600 truncate max-w-32">{lecture.title}</span>
           </div>
         </div>
 
         <div className="flex items-center gap-3">
-          {/* Progress */}
-          <div className="hidden sm:flex items-center gap-2 text-xs text-zinc-500">
-            <div className="w-24 h-1 bg-white/8 rounded-full overflow-hidden">
+          <div className="hidden sm:flex items-center gap-2 text-xs text-gray-500">
+            <div className="w-24 h-1.5 bg-gray-100 rounded-full overflow-hidden">
               <div
-                className="h-full bg-emerald-400 rounded-full transition-all"
-                style={{ width: `${(completed.length / (course as any).lectures.length) * 100}%` }}
+                className="h-full bg-emerald-500 rounded-full transition-all"
+                style={{ width: `${(completed.length / course.lectures.length) * 100}%` }}
               />
             </div>
-            <span>{completed.length}/{(course as any).lectures.length}</span>
+            <span>{completed.length}/{course.lectures.length}</span>
           </div>
 
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-              sidebarOpen ? "bg-amber-400/15 text-amber-400 border border-amber-400/30" : "bg-white/5 text-zinc-400 hover:text-white border border-white/8"
+              sidebarOpen ? "bg-amber-50 text-amber-700 border border-amber-200" : "bg-gray-100 text-gray-600 hover:text-gray-900 border border-gray-200"
             }`}
           >
             <Lightbulb className="w-3.5 h-3.5" />
@@ -125,13 +126,13 @@ export default function LearnPage() {
         </div>
       </nav>
 
-      <div className="max-w-4xl mx-auto px-6 py-8">
+      <div className="max-w-5xl mx-auto px-6 py-8">
         {/* Lecture header */}
-        <div className="mb-8">
+        <div className="mb-6">
           <div className="flex items-center gap-2 mb-3">
-            <span className="text-xs text-zinc-600">Lecture {lecture.order}</span>
+            <span className="text-xs text-gray-400">Lecture {lecture.order}</span>
             {isDone && (
-              <span className="text-xs text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded-full flex items-center gap-1">
+              <span className="text-xs text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full flex items-center gap-1">
                 <Check className="w-2.5 h-2.5" /> Completed
               </span>
             )}
@@ -139,12 +140,12 @@ export default function LearnPage() {
           <motion.h1
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-2xl font-semibold text-white mb-2"
+            className="text-2xl font-semibold text-gray-900 mb-2"
           >
             {lecture.title}
           </motion.h1>
-          <p className="text-zinc-500 text-sm">{lecture.description}</p>
-          <div className="flex items-center gap-2 mt-2 text-xs text-zinc-600">
+          <p className="text-gray-500 text-sm">{lecture.description}</p>
+          <div className="flex items-center gap-2 mt-2 text-xs text-gray-400">
             <Clock className="w-3 h-3" />
             <span>{lecture.duration}</span>
             <span>·</span>
@@ -152,24 +153,56 @@ export default function LearnPage() {
           </div>
         </div>
 
-        {/* Curriculum sidebar (left, course outline) */}
+        {/* Video player */}
+        {activeVideo?.youtube_id && (
+          <motion.div
+            key={activeVideo.youtube_id}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="mb-8"
+          >
+            <div className="relative w-full rounded-2xl overflow-hidden border border-gray-200 shadow-sm bg-black" style={{ aspectRatio: "16 / 9" }}>
+              <iframe
+                className="absolute inset-0 w-full h-full"
+                src={`https://www.youtube.com/embed/${activeVideo.youtube_id}`}
+                title={activeVideo.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+            <div className="flex items-center justify-between mt-3">
+              <div>
+                <p className="text-sm font-medium text-gray-900">{activeVideo.title}</p>
+                {activeVideo.description && <p className="text-xs text-gray-500 mt-0.5">{activeVideo.description}</p>}
+              </div>
+              <button
+                onClick={() => setSidebarOpen(true)}
+                className="hidden sm:flex items-center gap-1.5 text-xs text-amber-700 bg-amber-50 border border-amber-200 px-3 py-1.5 rounded-lg hover:bg-amber-100 transition-colors shrink-0 ml-4"
+              >
+                <Lightbulb className="w-3.5 h-3.5" /> Confused? Ask the guide
+              </button>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Outline + materials */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Course outline */}
           <div className="lg:col-span-1 order-2 lg:order-1">
-            <p className="text-xs text-zinc-600 mb-3 font-medium uppercase tracking-wider">Course outline</p>
+            <p className="text-xs text-gray-400 mb-3 font-medium uppercase tracking-wider">Course outline</p>
             <div className="space-y-1">
-              {(course as any).lectures.map((lec: Lecture) => {
+              {course.lectures.map((lec: Lecture) => {
                 const isActive = lec.id === lectureId;
                 const isDoneLec = completed.includes(lec.id);
                 return (
                   <Link key={lec.id} href={`/learn/${courseId}/${lec.id}`}>
                     <div className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs transition-all cursor-pointer ${
-                      isActive ? "bg-white/8 text-white" : "text-zinc-500 hover:text-zinc-300 hover:bg-white/3"
+                      isActive ? "bg-gray-100 text-gray-900" : "text-gray-500 hover:text-gray-800 hover:bg-gray-50"
                     }`}>
                       <div className={`w-4 h-4 rounded-full border flex items-center justify-center shrink-0 ${
-                        isDoneLec ? "border-emerald-400 bg-emerald-400/20" : isActive ? "border-white/40" : "border-white/15"
+                        isDoneLec ? "border-emerald-500 bg-emerald-50" : isActive ? "border-gray-400" : "border-gray-300"
                       }`}>
-                        {isDoneLec && <Check className="w-2 h-2 text-emerald-400" />}
+                        {isDoneLec && <Check className="w-2 h-2 text-emerald-600" />}
                       </div>
                       <span className="leading-snug line-clamp-2">{lec.title}</span>
                     </div>
@@ -191,7 +224,7 @@ export default function LearnPage() {
                     key={t}
                     onClick={() => setActiveTab(t)}
                     className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all capitalize ${
-                      activeTab === t ? "bg-white text-black" : "bg-white/5 text-zinc-500 hover:text-zinc-300 border border-white/8"
+                      activeTab === t ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-600 hover:text-gray-900 border border-gray-200"
                     }`}
                   >
                     {t === "all" ? "All" : MAT_LABEL[t]} {count > 0 && <span className="ml-1 opacity-60">{count}</span>}
@@ -204,13 +237,18 @@ export default function LearnPage() {
             <div className="space-y-4">
               {filteredMaterials.map((mat, i) => {
                 const Icon = MAT_ICON[mat.type] || Play;
+                const isPlaying = mat.youtube_id && activeVideo?.youtube_id === mat.youtube_id;
+                const isPlayable = mat.type === "video" && mat.youtube_id;
                 return (
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.06 }}
-                    className="bg-white/3 border border-white/8 rounded-2xl p-5 hover:bg-white/5 hover:border-white/12 transition-all"
+                    onClick={() => { if (isPlayable) { setActiveVideo(mat); window.scrollTo({ top: 0, behavior: "smooth" }); } }}
+                    className={`bg-white border rounded-2xl p-5 transition-all ${
+                      isPlaying ? "border-blue-300 ring-1 ring-blue-200" : "border-gray-200 hover:border-gray-300 hover:shadow-sm"
+                    } ${isPlayable ? "cursor-pointer" : ""}`}
                   >
                     <div className="flex items-start gap-4">
                       <div className={`p-2.5 rounded-xl border shrink-0 ${MAT_COLOR[mat.type]}`}>
@@ -219,30 +257,36 @@ export default function LearnPage() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-3">
                           <div>
-                            <span className="text-xs text-zinc-600 mb-1 block capitalize">{MAT_LABEL[mat.type] || mat.type}</span>
-                            <h3 className="text-white text-sm font-medium leading-snug">{mat.title}</h3>
-                            {mat.author && <p className="text-zinc-500 text-xs mt-0.5">{mat.author}</p>}
+                            <span className="text-xs text-gray-400 mb-1 block capitalize">{MAT_LABEL[mat.type] || mat.type}</span>
+                            <h3 className="text-gray-900 text-sm font-medium leading-snug">{mat.title}</h3>
+                            {mat.author && <p className="text-gray-500 text-xs mt-0.5">{mat.author}</p>}
                           </div>
                           {mat.duration && (
-                            <span className="text-xs text-zinc-600 shrink-0 flex items-center gap-1">
+                            <span className="text-xs text-gray-400 shrink-0 flex items-center gap-1">
                               <Clock className="w-3 h-3" />{mat.duration}
                             </span>
                           )}
                         </div>
                         {mat.description && (
-                          <p className="text-zinc-500 text-xs mt-2 leading-relaxed">{mat.description}</p>
+                          <p className="text-gray-500 text-xs mt-2 leading-relaxed">{mat.description}</p>
                         )}
-                        {mat.url && (
+                        {isPlayable ? (
+                          <span className={`inline-flex items-center gap-1.5 mt-3 text-xs font-medium ${isPlaying ? "text-blue-600" : "text-gray-600"}`}>
+                            <Play className="w-3 h-3" />
+                            {isPlaying ? "Now playing" : "Play here"}
+                          </span>
+                        ) : mat.url ? (
                           <a
                             href={mat.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 mt-3 text-xs text-zinc-400 hover:text-white transition-colors"
+                            onClick={(e) => e.stopPropagation()}
+                            className="inline-flex items-center gap-1.5 mt-3 text-xs text-gray-600 hover:text-gray-900 transition-colors"
                           >
                             <ExternalLink className="w-3 h-3" />
-                            {mat.type === "video" ? "Watch on YouTube" : mat.type === "paper" ? "Read paper" : "Access book"}
+                            {mat.type === "paper" ? "Read paper" : "Access book"}
                           </a>
-                        )}
+                        ) : null}
                       </div>
                     </div>
                   </motion.div>
@@ -251,9 +295,9 @@ export default function LearnPage() {
             </div>
 
             {/* Navigation + mark complete */}
-            <div className="flex items-center justify-between mt-10 pt-6 border-t border-white/5">
+            <div className="flex items-center justify-between mt-10 pt-6 border-t border-gray-200">
               {prevLecture ? (
-                <Link href={`/learn/${courseId}/${prevLecture.id}`} className="flex items-center gap-2 text-zinc-500 hover:text-white text-sm transition-colors">
+                <Link href={`/learn/${courseId}/${prevLecture.id}`} className="flex items-center gap-2 text-gray-500 hover:text-gray-900 text-sm transition-colors">
                   <ArrowLeft className="w-4 h-4" />
                   <span className="hidden sm:inline">{prevLecture.title}</span>
                   <span className="sm:hidden">Previous</span>
@@ -264,19 +308,19 @@ export default function LearnPage() {
                 {!isDone && (
                   <button
                     onClick={markDone}
-                    className="flex items-center gap-2 px-4 py-2 bg-emerald-400/10 border border-emerald-400/30 text-emerald-400 rounded-xl text-xs font-medium hover:bg-emerald-400/20 transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-xl text-xs font-medium hover:bg-emerald-100 transition-colors"
                   >
                     <Check className="w-3.5 h-3.5" />
                     Mark complete
                   </button>
                 )}
                 {nextLecture ? (
-                  <Link href={`/learn/${courseId}/${nextLecture.id}`} className="flex items-center gap-2 bg-white text-black text-sm font-medium px-4 py-2 rounded-xl hover:bg-zinc-100 transition-colors">
+                  <Link href={`/learn/${courseId}/${nextLecture.id}`} className="flex items-center gap-2 bg-gray-900 text-white text-sm font-medium px-4 py-2 rounded-xl hover:bg-gray-700 transition-colors">
                     Next <ChevronRight className="w-4 h-4" />
                   </Link>
                 ) : (
                   allDone && (
-                    <Link href={`/certificate/${courseId}`} className="flex items-center gap-2 bg-amber-400 text-black text-sm font-medium px-4 py-2 rounded-xl hover:bg-amber-300 transition-colors">
+                    <Link href={`/certificate/${courseId}`} className="flex items-center gap-2 bg-amber-400 text-gray-900 text-sm font-medium px-4 py-2 rounded-xl hover:bg-amber-300 transition-colors">
                       Get certificate 🎓
                     </Link>
                   )

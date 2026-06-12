@@ -43,22 +43,22 @@ function ResultsContent() {
   }, [query]);
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] px-4 py-8">
-      <div className="max-w-3xl mx-auto">
+    <main className="min-h-screen bg-white text-gray-900">
+      <div className="max-w-3xl mx-auto px-6 py-8">
         {/* Header */}
         <div className="flex items-center gap-3 mb-8">
           <button
             onClick={() => router.back()}
-            className="p-2 rounded-xl hover:bg-white/5 text-zinc-500 hover:text-white transition-colors"
+            className="p-2 rounded-xl hover:bg-gray-100 text-gray-500 hover:text-gray-900 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
           </button>
           <div>
-            <p className="text-zinc-500 text-sm">Results for</p>
-            <h2 className="text-white font-medium text-lg">"{query}"</h2>
+            <p className="text-gray-500 text-sm">Results for</p>
+            <h2 className="text-gray-900 font-medium text-lg">"{query}"</h2>
           </div>
           {detectedLang && (
-            <span className="ml-auto text-xs bg-white/5 border border-white/10 text-zinc-400 px-2.5 py-1 rounded-full">
+            <span className="ml-auto text-xs bg-gray-100 text-gray-700 px-2.5 py-1 rounded-full">
               Detected: {detectedLang}
             </span>
           )}
@@ -68,10 +68,7 @@ function ResultsContent() {
         {loading && (
           <div className="space-y-4">
             {[1, 2, 3].map((i) => (
-              <div
-                key={i}
-                className="h-36 rounded-2xl bg-white/5 animate-pulse"
-              />
+              <div key={i} className="h-36 rounded-2xl bg-gray-100 animate-pulse" />
             ))}
           </div>
         )}
@@ -80,34 +77,34 @@ function ResultsContent() {
         {!loading && lessons.length > 0 && (
           <div className="space-y-4">
             {lessons.map((lesson) => (
-              <Link key={lesson.id} href={`/lesson/${lesson.id}`}>
-                <div className="group bg-white/4 border border-white/8 rounded-2xl p-5 hover:bg-white/7 hover:border-white/15 transition-all cursor-pointer">
+              <Link key={lesson.id} href={`/courses/${lesson.id}`}>
+                <div className="group bg-white border border-gray-200 rounded-2xl p-5 hover:shadow-md hover:border-gray-300 transition-all cursor-pointer">
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-2">
-                        <span className="text-xs bg-white/8 text-zinc-400 px-2 py-0.5 rounded-full">
+                        <span className="text-xs bg-gray-900 text-white px-2 py-0.5 rounded-full">
                           {lesson.subject}
                         </span>
-                        <span className="text-xs text-zinc-600 capitalize">
+                        <span className="text-xs text-gray-500 capitalize">
                           {lesson.level}
                         </span>
                       </div>
-                      <h3 className="text-white font-medium text-base mb-1 group-hover:text-zinc-100">
+                      <h3 className="text-gray-900 font-medium text-base mb-1 group-hover:text-gray-700">
                         {lesson.title}
                       </h3>
-                      <p className="text-zinc-500 text-sm">
+                      <p className="text-gray-500 text-sm">
                         {lesson.teacher.flag} {lesson.teacher.name} ·{" "}
                         {lesson.teacher.country}
                       </p>
                     </div>
                     <div className="flex flex-col items-end gap-2 shrink-0">
-                      <div className="flex items-center gap-1 text-zinc-600 text-xs">
+                      <div className="flex items-center gap-1 text-gray-500 text-xs">
                         <Clock className="w-3 h-3" />
                         {lesson.duration}
                       </div>
                       <div className="text-right">
-                        <p className="text-xs text-zinc-600">Sponsored by</p>
-                        <p className="text-xs text-zinc-400 font-medium">
+                        <p className="text-xs text-gray-500">Sponsored by</p>
+                        <p className="text-xs text-gray-900 font-medium">
                           {lesson.sponsor.name}
                         </p>
                       </div>
@@ -122,7 +119,7 @@ function ResultsContent() {
         {/* Empty state */}
         {!loading && lessons.length === 0 && (
           <div className="text-center py-20">
-            <p className="text-zinc-500">No lessons found. Try a different query.</p>
+            <p className="text-gray-500">No lessons found. Try a different query.</p>
           </div>
         )}
       </div>
