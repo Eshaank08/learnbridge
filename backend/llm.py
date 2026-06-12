@@ -14,7 +14,7 @@ from typing import Annotated, Literal, Union
 import anthropic
 from pydantic import BaseModel, Field
 
-from prompts import TEST_GENERATION_SYSTEM
+from prompts import TEST_GENERATION_SYSTEM, SHORT_GRADING_SYSTEM
 
 # ---------------------------------------------------------------------------
 # Pydantic models — mirror §Contracts (frontend/lib/types.ts)
@@ -46,6 +46,21 @@ class GeneratedTest(BaseModel):
     """Top-level structured-output wrapper returned by Claude."""
 
     questions: list[AnyQuestion]
+
+
+# ---------------------------------------------------------------------------
+# Grading models — used by grade_short_answers()
+# ---------------------------------------------------------------------------
+
+
+class ShortGradeResult(BaseModel):
+    id: str
+    correct: bool
+    feedback: str
+
+
+class ShortGradingResponse(BaseModel):
+    results: list[ShortGradeResult]
 
 
 # ---------------------------------------------------------------------------
@@ -130,3 +145,62 @@ def generate_test(node: dict, language: str = "en") -> list[dict]:
             )
 
     return result
+
+
+def grade_short_answers(node: dict, short_items: list[dict]) -> list[dict]:
+    """Grade short-answer items using Claude structured outputs.
+
+    short_items is a list of dicts with shape:
+        { "question": { "id": str, "type": "short", "prompt": str },
+          "answer": str }
+
+    Returns a list of plain dicts:
+        { "id": str, "correct": bool, "feedback": str }
+
+    If short_items is empty, returns [] without calling Claude.
+
+    Any SDK error or validation failure propagates to the caller, which maps
+    it to HTTP 502.
+    """
+    if not short_items:
+        return []
+
+    summary: str = node.get("summary", "")
+    title: str = node["title"]
+
+    # Build the user message: node summary + question/answer pairs.
+    lines: list[str] = [
+        f"Node title: {title}",
+        "",
+        f"Node summary:\n{summary}",
+        "",
+        "Short-answer submissions to grade:",
+    ]
+    for item in short_items:
+        q = item["question"]
+        a = item["answer"]
+        lines.append(f'\nQuestion id: {q["id"]}')
+        lines.append(f'Question: {q["prompt"]}')
+        lines.append(f"Student answer: {a}")
+
+    user_message = "\n".join(lines)
+
+    resp = _client().messages.parse(
+        model="claude-sonnet-4-6",
+        max_tokens=1000,
+        system=SHORT_GRADING_SYSTEM,
+        messages=[{"role": "user", "content": user_message}],
+        output_format=ShortGradingResponse,
+        timeout=30,
+    )
+
+    parsed: ShortGradingResponse | None = resp.parsed_output
+    if parsed is None:
+        raise ValueError(
+            "Claude returned a response but short-grading output could not be parsed."
+        )
+
+    return [
+        {"id": r.id, "correct": r.correct, "feedback": r.feedback}
+        for r in parsed.results
+    ]
