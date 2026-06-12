@@ -18,31 +18,6 @@ type Lesson = {
   sponsor: { name: string; tagline: string; logo_placeholder: string };
 };
 
-// Mock lessons for demo — replace with API call when backend is ready
-const MOCK_LESSONS: Record<string, Lesson> = {
-  "bio-001": {
-    id: "bio-001",
-    title: "Photosynthesis Explained",
-    subject: "Biology",
-    concept: "Photosynthesis",
-    level: "beginner",
-    duration: "8 min",
-    content_summary:
-      "Plants make their own food through a process called photosynthesis. They use sunlight, water from the soil, and carbon dioxide from the air. Inside plant cells are structures called chloroplasts, which contain a green pigment called chlorophyll. Chlorophyll captures light energy from the sun. The plant uses this energy to convert water and carbon dioxide into glucose — a type of sugar the plant uses for energy and growth. Oxygen is released as a byproduct, which is what we breathe. Without sunlight, plants cannot produce glucose and eventually die. This is why sunlight is essential to plant life.",
-    teacher: {
-      name: "Dr. Amara Osei",
-      country: "Kenya",
-      flag: "🇰🇪",
-      credentials: "PhD Botany, University of Nairobi",
-    },
-    sponsor: {
-      name: "Bayer",
-      logo_placeholder: "bayer",
-      tagline: "Investing in the scientists of tomorrow.",
-    },
-  },
-};
-
 export default function LessonPage() {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
@@ -50,12 +25,20 @@ export default function LessonPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [thinking, setThinking] = useState(false);
+  const [loading, setLoading] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Use mock until backend is ready
-    const found = MOCK_LESSONS[id];
-    if (found) setLesson(found);
+    if (!id) return;
+    setLoading(true);
+    fetch("/lessons.json")
+      .then((r) => r.json())
+      .then((data: Lesson[]) => {
+        const found = Array.isArray(data) ? data.find((item) => item.id === id) : null;
+        setLesson(found || null);
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
   }, [id]);
 
   useEffect(() => {
@@ -94,7 +77,7 @@ export default function LessonPage() {
     }
   };
 
-  if (!lesson) {
+  if (loading || !lesson) {
     return (
       <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
         <div className="text-zinc-500">Loading lesson...</div>
@@ -194,7 +177,7 @@ export default function LessonPage() {
           )}
 
           {/* Input */}
-          <div className="px-4 py-3 flex items-center gap-2">
+          <div className="px-4 py-3 flex items-center gap-2 border-t border-white/8">
             <input
               type="text"
               value={input}
