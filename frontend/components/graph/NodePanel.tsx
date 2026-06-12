@@ -59,7 +59,7 @@ export default function NodePanel({
 
       {/* Slide-over panel */}
       <aside
-        className="fixed right-0 top-0 z-30 flex h-full w-[420px] flex-col bg-slate-900 border-l border-slate-700 shadow-2xl"
+        className="fixed right-0 top-0 z-30 flex h-full w-full max-w-[420px] flex-col bg-slate-900 border-l border-slate-700 shadow-2xl"
         aria-label={`Details for ${node.title}`}
       >
         {/* Header */}

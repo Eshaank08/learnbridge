@@ -17,23 +17,23 @@ export default function Home() {
       </header>
 
       {/* Hero */}
-      <section className="max-w-5xl mx-auto px-6 pt-16 pb-12 text-center">
-        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-50 mb-4">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-10 sm:pb-12 text-center">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-50 mb-4">
           Learn anything as a{" "}
           <span className="text-amber-400">skill tree</span>
         </h1>
-        <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+        <p className="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto">
           Learn anything as a skill tree — unlock topics, master them with
           AI-graded quizzes.
         </p>
       </section>
 
       {/* Roadmap grid */}
-      <main className="max-w-5xl mx-auto px-6 pb-20">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 pb-20">
         <h2 className="text-sm font-semibold uppercase tracking-widest text-slate-500 mb-6">
           Choose a roadmap
         </h2>
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {graphs.map((graph) => (
             <Link
               key={graph.id}

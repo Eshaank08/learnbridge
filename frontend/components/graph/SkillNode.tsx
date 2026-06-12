@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { Handle, Position, NodeProps, Node } from "@xyflow/react";
 
 // Visual state includes the derived "locked" state (never stored, computed per render).
@@ -21,21 +22,21 @@ const STATE_CLASSES: Record<
 > = {
   unlit: {
     wrapper:
-      "bg-node-unlit-bg border-2 border-node-unlit-border rounded-lg px-4 py-3 w-[220px] min-h-[80px] flex flex-col justify-center",
+      "bg-node-unlit-bg border-2 border-node-unlit-border rounded-lg px-4 py-3 w-[220px] min-h-[80px] flex flex-col justify-center node-state-transition",
     title: "text-sm font-semibold text-node-unlit-text leading-tight",
     concept: "text-xs text-node-unlit-text opacity-70 mt-0.5",
     icon: null,
   },
   lit: {
     wrapper:
-      "bg-node-lit-bg border-2 border-node-lit-border rounded-lg px-4 py-3 w-[220px] min-h-[80px] flex flex-col justify-center shadow-node-lit",
+      "bg-node-lit-bg border-2 border-node-lit-border rounded-lg px-4 py-3 w-[220px] min-h-[80px] flex flex-col justify-center shadow-node-lit node-lit-animate",
     title: "text-sm font-semibold text-node-lit-text leading-tight",
     concept: "text-xs text-node-lit-text opacity-80 mt-0.5",
     icon: null,
   },
   mastered: {
     wrapper:
-      "bg-node-mastered-bg border-2 border-node-mastered-border rounded-lg px-4 py-3 w-[220px] min-h-[80px] flex flex-col justify-center",
+      "bg-node-mastered-bg border-2 border-node-mastered-border rounded-lg px-4 py-3 w-[220px] min-h-[80px] flex flex-col justify-center node-mastered-animate",
     title: "text-sm font-semibold text-node-mastered-text leading-tight",
     concept: "text-xs text-node-mastered-text opacity-80 mt-0.5",
     icon: (
@@ -46,7 +47,7 @@ const STATE_CLASSES: Record<
   },
   locked: {
     wrapper:
-      "bg-node-locked-bg border-2 border-node-locked-border rounded-lg px-4 py-3 w-[220px] min-h-[80px] flex flex-col justify-center opacity-60",
+      "bg-node-locked-bg border-2 border-node-locked-border rounded-lg px-4 py-3 w-[220px] min-h-[80px] flex flex-col justify-center opacity-60 node-state-transition",
     title: "text-sm font-semibold text-node-locked-text leading-tight",
     concept: "text-xs text-node-locked-text opacity-60 mt-0.5",
     icon: (
@@ -61,8 +62,17 @@ export default function SkillNode({ data }: NodeProps<SkillNodeType>) {
   const { title, concept, state } = data;
   const classes = STATE_CLASSES[state] ?? STATE_CLASSES.unlit;
 
+  // Track the previous state to detect locked→unlit/lit transitions.
+  const prevStateRef = useRef<SkillNodeVisualState>(state);
+  const wasLocked = prevStateRef.current === "locked";
+  prevStateRef.current = state;
+
+  // If this node just transitioned from locked to unlit/lit, play unlock animation.
+  const unlockClass =
+    wasLocked && (state === "unlit" || state === "lit") ? " node-unlock-animate" : "";
+
   return (
-    <div className={classes.wrapper}>
+    <div className={classes.wrapper + unlockClass}>
       {/* Incoming edge handle — prerequisites connect here */}
       <Handle type="target" position={Position.Top} />
 

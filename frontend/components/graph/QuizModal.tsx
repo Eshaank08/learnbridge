@@ -212,7 +212,22 @@ export default function QuizModal({
                   )}
                 </div>
               )}
-              {questions.length === 0 && !error ? (
+              {loading && questions.length === 0 ? (
+                /* Generating skeleton — shown while the generate request is in-flight */
+                <div className="flex flex-col gap-4 animate-pulse" aria-label="Loading questions…" aria-busy="true">
+                  {[1, 2, 3].map((i) => (
+                    <div key={i} className="flex flex-col gap-2">
+                      <div className="h-4 rounded bg-gray-700 w-3/4" />
+                      <div className="h-3 rounded bg-gray-700/60 w-1/2" />
+                      <div className="mt-1 flex flex-col gap-1.5">
+                        <div className="h-10 rounded-lg bg-gray-800 border border-gray-700" />
+                        <div className="h-10 rounded-lg bg-gray-800 border border-gray-700" />
+                        <div className="h-10 rounded-lg bg-gray-800 border border-gray-700" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : questions.length === 0 && !error ? (
                 <p className="text-gray-400 text-sm">No questions available.</p>
               ) : questions.length > 0 ? (
                 questions.map((q) => {
@@ -247,7 +262,7 @@ export default function QuizModal({
               <div
                 className={`rounded-xl px-5 py-4 mb-6 text-center ${
                   result.passed
-                    ? "bg-emerald-900/40 border border-emerald-500"
+                    ? "bg-emerald-900/40 border border-emerald-500 quiz-pass-celebrate"
                     : "bg-red-900/40 border border-red-500"
                 }`}
               >
