@@ -1,0 +1,38 @@
+{
+  "detected_language": "Hindi (hi)",
+  "subject": "Biology",
+  "concept": "Photosynthesis",
+  "level": "beginner",
+  "lessons": [
+    {
+      "id": "bio-001",
+      "title": "Photosynthesis Explained",
+      "subject": "Biology",
+      "concept": "Photosynthesis",
+      "level": "beginner",
+      "duration": "8 min",
+      "teacher": { "name": "Dr. Amara Osei", "country": "Kenya", "flag": "🇰🇪", "credentials": "PhD Botany, University of Nairobi" },
+      "sponsor": { "name": "Bayer", "tagline": "Investing in the scientists of tomorrow." }
+    },
+    {
+      "id": "bio-002",
+      "title": "How Plants Make Energy",
+      "subject": "Biology",
+      "concept": "Photosynthesis",
+      "level": "beginner",
+      "duration": "6 min",
+      "teacher": { "name": "Priya Sharma", "country": "India", "flag": "🇮🇳", "credentials": "MSc Biology, IIT Bombay" },
+      "sponsor": { "name": "Sun Pharma", "tagline": "Growing the next generation of scientists." }
+    },
+    {
+      "id": "bio-003",
+      "title": "Chlorophyll and Light Energy",
+      "subject": "Biology",
+      "concept": "Photosynthesis",
+      "level": "intermediate",
+      "duration": "11 min",
+      "teacher": { "name": "Carlos Mendez", "country": "Brazil", "flag": "🇧🇷", "credentials": "PhD Plant Biology, USP" },
+      "sponsor": { "name": "Embrapa", "tagline": "Science for the future of food." }
+    }
+  ]
+}
