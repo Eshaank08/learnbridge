@@ -13,13 +13,11 @@ import "@xyflow/react/dist/style.css";
 import { layoutGraph } from "../../../lib/layout";
 import { unlockedSet, displayState, completion } from "../../../lib/progression";
 import { useGraphProgress } from "../../../lib/useGraphProgress";
-import SkillNode, { nodeTypes } from "../../../components/graph/SkillNode";
+import { nodeTypes } from "../../../components/graph/SkillNode";
 import GraphHud from "../../../components/graph/GraphHud";
+import NodePanel from "../../../components/graph/NodePanel";
 import type { Graph } from "../../../lib/types";
 import graphsJson from "../../../../seed-data/graphs.json";
-
-// Suppress unused-import warning: SkillNode is consumed by nodeTypes but not called directly.
-void SkillNode;
 
 const graphs = graphsJson as unknown as Graph[];
 
@@ -34,14 +32,13 @@ export default function GraphPage({ params }: PageProps) {
     notFound();
   }
 
-  const { progress, reset } = useGraphProgress(graph.id);
+  const { progress, setNodeState, reset } = useGraphProgress(graph.id);
 
-  // Record the selected node id for C1 to build on — no panel rendered yet.
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
 
-  const { nodes, edges } = useMemo(() => {
-    const unlocked = unlockedSet(graph, progress);
+  const unlocked = useMemo(() => unlockedSet(graph, progress), [graph, progress]);
 
+  const { nodes, edges } = useMemo(() => {
     // Build a lookup map from node id → GraphNode for displayState calls.
     const nodeById = new Map(graph.nodes.map((n) => [n.id, n]));
 
@@ -76,7 +73,7 @@ export default function GraphPage({ params }: PageProps) {
     });
 
     return { nodes, edges };
-  }, [graph, progress]);
+  }, [graph, progress, unlocked]);
 
   const { mastered, total } = useMemo(
     () => completion(graph, progress),
@@ -87,9 +84,26 @@ export default function GraphPage({ params }: PageProps) {
     setSelectedNodeId(node.id);
   };
 
+  // Resolve the selected node and its panel props.
+  const selectedNode = selectedNodeId
+    ? graph.nodes.find((n) => n.id === selectedNodeId) ?? null
+    : null;
+
+  const selectedDisplayState = selectedNode
+    ? displayState(selectedNode, progress, unlocked)
+    : null;
+
+  // Prereq titles: titles of nodes that are sources of edges whose target is this node.
+  const prereqTitles = useMemo(() => {
+    if (!selectedNodeId) return [];
+    const nodeById = new Map(graph.nodes.map((n) => [n.id, n]));
+    return graph.edges
+      .filter((e) => e.target === selectedNodeId)
+      .map((e) => nodeById.get(e.source)?.title ?? e.source);
+  }, [graph, selectedNodeId]);
+
   return (
-    // data-selected-node is read by C1 (NodePanel) once added.
-    <div className="relative h-screen w-screen" data-selected-node={selectedNodeId ?? ""}>
+    <div className="relative h-screen w-screen">
       <GraphHud mastered={mastered} total={total} onReset={reset} />
       <ReactFlow
         nodes={nodes}
@@ -103,6 +117,17 @@ export default function GraphPage({ params }: PageProps) {
         <Background />
         <Controls />
       </ReactFlow>
+
+      {selectedNode && selectedDisplayState && (
+        <NodePanel
+          node={selectedNode}
+          displayState={selectedDisplayState}
+          prereqTitles={prereqTitles}
+          onClose={() => setSelectedNodeId(null)}
+          onTakeTest={() => {}}
+          setNodeState={setNodeState}
+        />
+      )}
     </div>
   );
 }
