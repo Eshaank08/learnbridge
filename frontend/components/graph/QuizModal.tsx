@@ -20,6 +20,12 @@ export interface QuizModalProps {
   result: GradeTestResponse | null;
   /** Optional — true while D7's gradeTest request is in-flight. */
   loading?: boolean;
+  /** Called when the student clicks "Retake test" so the parent can clear result. */
+  onRetake?: () => void;
+  /** Non-empty string → show an error banner in the modal body. */
+  error?: string | null;
+  /** Called when the student clicks "Retry" inside the error banner. */
+  onRetry?: () => void;
 }
 
 // ─────────────────────────── Helpers ───────────────────────────
@@ -124,6 +130,9 @@ export default function QuizModal({
   onSubmit,
   result,
   loading = false,
+  onRetake,
+  error,
+  onRetry,
 }: QuizModalProps) {
   // Map from question.id → chosen option index (mcq) or text (short).
   const [answers, setAnswers] = useState<Map<string, number | string>>(
@@ -145,11 +154,11 @@ export default function QuizModal({
     onSubmit(items);
   }
 
-  /** Retake: clear local answers, which re-shows the question view.
-   *  The parent (D7) is responsible for clearing `result` when it receives
-   *  a fresh onSubmit, so resetting answers is sufficient here. */
+  /** Retake: clear local answers and notify the parent to clear result,
+   *  which returns the modal to the question view. */
   function handleRetake() {
     setAnswers(new Map());
+    onRetake?.();
   }
 
   const allAnswered =
@@ -189,9 +198,23 @@ export default function QuizModal({
           {result === null ? (
             // ════════════ QUESTION VIEW ════════════
             <>
-              {questions.length === 0 ? (
+              {/* Error banner — shown when a generate or grade request failed */}
+              {error && (
+                <div className="flex items-center justify-between gap-3 rounded-lg border border-red-500 bg-red-900/30 px-4 py-3 mb-5">
+                  <p className="text-sm text-red-200">{error}</p>
+                  {onRetry && (
+                    <button
+                      onClick={onRetry}
+                      className="shrink-0 px-3 py-1.5 rounded-md text-xs font-semibold bg-red-600 text-white hover:bg-red-500 transition-colors"
+                    >
+                      Retry
+                    </button>
+                  )}
+                </div>
+              )}
+              {questions.length === 0 && !error ? (
                 <p className="text-gray-400 text-sm">No questions available.</p>
-              ) : (
+              ) : questions.length > 0 ? (
                 questions.map((q) => {
                   if (q.type === "mcq") {
                     return (
@@ -215,7 +238,7 @@ export default function QuizModal({
                     />
                   );
                 })
-              )}
+              ) : null}
             </>
           ) : (
             // ════════════ RESULT VIEW ════════════

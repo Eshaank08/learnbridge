@@ -16,7 +16,9 @@ import { useGraphProgress } from "../../../lib/useGraphProgress";
 import { nodeTypes } from "../../../components/graph/SkillNode";
 import GraphHud from "../../../components/graph/GraphHud";
 import NodePanel from "../../../components/graph/NodePanel";
-import type { Graph } from "../../../lib/types";
+import QuizModal from "../../../components/graph/QuizModal";
+import { generateTest, gradeTest } from "../../../lib/api";
+import type { Graph, Question, GradeTestResponse, GradeItem, ApiError } from "../../../lib/types";
 import graphsJson from "../../../../seed-data/graphs.json";
 
 const graphs = graphsJson as unknown as Graph[];
@@ -35,6 +37,14 @@ export default function GraphPage({ params }: PageProps) {
   const { progress, setNodeState, reset } = useGraphProgress(graph.id);
 
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
+
+  // ── Quiz modal state ──
+  const [quizOpen, setQuizOpen] = useState(false);
+  const [quizNodeId, setQuizNodeId] = useState<string | null>(null);
+  const [quizQuestions, setQuizQuestions] = useState<Question[]>([]);
+  const [quizResult, setQuizResult] = useState<GradeTestResponse | null>(null);
+  const [quizLoading, setQuizLoading] = useState(false);
+  const [quizError, setQuizError] = useState<string | null>(null);
 
   const unlocked = useMemo(() => unlockedSet(graph, progress), [graph, progress]);
 
@@ -84,6 +94,85 @@ export default function GraphPage({ params }: PageProps) {
     setSelectedNodeId(node.id);
   };
 
+  // ── Quiz handlers ──
+
+  async function handleTakeTest(nodeId: string) {
+    // Guard against double-fire while a generate request is already in-flight.
+    if (quizLoading) return;
+    setQuizNodeId(nodeId);
+    setQuizOpen(true);
+    setQuizResult(null);
+    setQuizError(null);
+    setQuizLoading(true);
+    try {
+      const res = await generateTest({ graph_id: graph!.id, node_id: nodeId });
+      setQuizQuestions(res.questions);
+    } catch (err) {
+      const apiErr = err as ApiError;
+      setQuizError(apiErr?.detail ?? "Failed to load questions. Please try again.");
+    } finally {
+      setQuizLoading(false);
+    }
+  }
+
+  async function handleQuizSubmit(items: GradeItem[]) {
+    if (!quizNodeId) return;
+    setQuizLoading(true);
+    setQuizError(null);
+    setQuizResult(null);
+    try {
+      const res = await gradeTest({ graph_id: graph!.id, node_id: quizNodeId, items });
+      setQuizResult(res);
+      if (res.passed) {
+        setNodeState(quizNodeId, "mastered");
+      }
+    } catch (err) {
+      const apiErr = err as ApiError;
+      setQuizError(apiErr?.detail ?? "Grading failed. Please try again.");
+    } finally {
+      setQuizLoading(false);
+    }
+  }
+
+  function handleQuizRetake() {
+    // Clear result so the modal returns to the question view.
+    // QuizModal already cleared its own answer state via handleRetake.
+    setQuizResult(null);
+  }
+
+  function handleQuizRetry() {
+    // If generate failed (no questions loaded yet), re-run generate.
+    // Otherwise (grade failed, questions are intact) just clear the error
+    // so the student can re-submit their existing answers.
+    if (quizQuestions.length === 0 && quizNodeId) {
+      void handleTakeTestRetry(quizNodeId);
+    } else {
+      setQuizError(null);
+    }
+  }
+
+  async function handleTakeTestRetry(nodeId: string) {
+    setQuizError(null);
+    setQuizLoading(true);
+    try {
+      const res = await generateTest({ graph_id: graph!.id, node_id: nodeId });
+      setQuizQuestions(res.questions);
+    } catch (err) {
+      const apiErr = err as ApiError;
+      setQuizError(apiErr?.detail ?? "Failed to load questions. Please try again.");
+    } finally {
+      setQuizLoading(false);
+    }
+  }
+
+  function handleQuizClose() {
+    setQuizOpen(false);
+    setQuizQuestions([]);
+    setQuizResult(null);
+    setQuizError(null);
+    setQuizNodeId(null);
+  }
+
   // Resolve the selected node and its panel props.
   const selectedNode = selectedNodeId
     ? graph.nodes.find((n) => n.id === selectedNodeId) ?? null
@@ -124,10 +213,22 @@ export default function GraphPage({ params }: PageProps) {
           displayState={selectedDisplayState}
           prereqTitles={prereqTitles}
           onClose={() => setSelectedNodeId(null)}
-          onTakeTest={() => {}}
+          onTakeTest={() => handleTakeTest(selectedNode.id)}
           setNodeState={setNodeState}
         />
       )}
+
+      <QuizModal
+        open={quizOpen}
+        questions={quizQuestions}
+        result={quizResult}
+        loading={quizLoading}
+        error={quizError}
+        onClose={handleQuizClose}
+        onSubmit={handleQuizSubmit}
+        onRetake={handleQuizRetake}
+        onRetry={handleQuizRetry}
+      />
     </div>
   );
 }
