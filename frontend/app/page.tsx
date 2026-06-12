@@ -4,16 +4,14 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { Search, ArrowRight, Globe, Award, BookOpen, Lightbulb, ChevronRight, WifiOff, Download, Smartphone, Check } from "lucide-react";
+import { Search, ArrowRight, Globe, Award, BookOpen, Lightbulb, ChevronRight, WifiOff, Download, Smartphone, Check, Languages, Mic, Volume2, GraduationCap, Building2, Users } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
 import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
-import { WordRotate } from "@/components/ui/word-rotate";
 import { NumberTicker } from "@/components/ui/number-ticker";
 import { Marquee } from "@/components/ui/marquee";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { BlurFade } from "@/components/ui/blur-fade";
 
-const SUBJECTS = ["Biology", "Computer Science", "Mathematics", "Physics", "History", "Chemistry"];
 const EXAMPLES = [
   "मुझे photosynthesis समझाओ",
   "Why does gravity work?",
@@ -116,11 +114,7 @@ export default function HomePage() {
         <BlurFade delay={0.06}>
           <h1 className="text-5xl sm:text-6xl font-semibold text-gray-900 tracking-tight leading-[1.1] mb-6">
             Expert education in{" "}
-            <WordRotate
-              words={SUBJECTS}
-              className="text-blue-600 inline-block"
-              duration={2000}
-            />
+            <span className="bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">any subject</span>
             <br />
             <span className="text-gray-400">free, in your language.</span>
           </h1>
@@ -184,12 +178,13 @@ export default function HomePage() {
       {/* ── STATS ── */}
       <BlurFade delay={0} inView>
         <section className="border-y border-gray-100 bg-gray-50 py-12 px-6">
-          <div className="max-w-3xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
+          <div className="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 text-center">
             {[
-              { value: 50000, suffix: "+", label: "Students learning" },
+              { value: 1200, suffix: "+", label: "Students learning" },
               { value: 20, suffix: "+", label: "Expert courses" },
+              { value: 95, suffix: "+", label: "Languages supported" },
+              { value: 12, suffix: "", label: "Live tutors" },
               { value: 100, suffix: "%", label: "Free for students" },
-              { value: 40, suffix: "+", label: "Languages supported" },
             ].map((stat) => (
               <div key={stat.label}>
                 <p className="text-3xl font-semibold text-gray-900 mb-1">
@@ -202,6 +197,37 @@ export default function HomePage() {
           </div>
         </section>
       </BlurFade>
+
+      {/* ── THE PROBLEM ── */}
+      <section className="py-24 px-6 max-w-5xl mx-auto">
+        <BlurFade inView>
+          <div className="text-center mb-4">
+            <p className="text-xs font-medium text-blue-600 uppercase tracking-widest mb-3">The problem</p>
+            <h2 className="text-3xl sm:text-4xl font-semibold text-gray-900 leading-tight">Talent is universal.<br />Access isn't.</h2>
+          </div>
+        </BlurFade>
+        <BlurFade delay={0.1} inView>
+          <p className="text-center text-gray-500 max-w-xl mx-auto mb-12">
+            A brilliant student in rural Bihar, Lagos, or Jakarta hits the same three walls. We tear down all three.
+          </p>
+        </BlurFade>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {[
+            { wall: "Geography", stat: "300M", label: "children can't read at grade level", desc: "One teacher, 80 students, no way to get individual help." },
+            { wall: "Wealth", stat: "$0", label: "is what most families can spend", desc: "Quality tutoring and courses are priced for the few." },
+            { wall: "Language", stat: "17%", label: "of the world speaks English natively", desc: "72% of online learning content is in English they can't read." },
+          ].map((w, i) => (
+            <BlurFade key={w.wall} delay={i * 0.1} inView>
+              <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 h-full">
+                <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">{w.wall}</p>
+                <p className="text-4xl font-semibold text-gray-900 mb-1">{w.stat}</p>
+                <p className="text-sm text-gray-600 mb-3">{w.label}</p>
+                <p className="text-xs text-gray-400 leading-relaxed">{w.desc}</p>
+              </div>
+            </BlurFade>
+          ))}
+        </div>
+      </section>
 
       {/* ── HOW IT WORKS ── */}
       <section className="py-24 px-6 max-w-5xl mx-auto">
@@ -225,6 +251,95 @@ export default function HomePage() {
               </div>
             </BlurFade>
           ))}
+        </div>
+      </section>
+
+      {/* ── MULTILINGUAL ENGINE ── */}
+      <section className="py-24 px-6 bg-gray-50 border-y border-gray-100">
+        <div className="max-w-5xl mx-auto">
+          <BlurFade inView>
+            <div className="text-center mb-4">
+              <p className="text-xs font-medium text-blue-600 uppercase tracking-widest mb-3">The multilingual engine</p>
+              <h2 className="text-3xl sm:text-4xl font-semibold text-gray-900 leading-tight">
+                A teacher in Berlin. A student in Nairobi.<br />Same lesson — in their language.
+              </h2>
+            </div>
+          </BlurFade>
+          <BlurFade delay={0.1} inView>
+            <p className="text-center text-gray-500 max-w-2xl mx-auto mb-14">
+              Language breaks education in three places. We solve all three — two already work, one is the 90-day pipeline.
+            </p>
+          </BlurFade>
+
+          {/* Three problems */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-16">
+            {[
+              {
+                n: "Problem 1", icon: Search, title: "The input",
+                desc: "Students can't express confusion in English. They think in Hindi, Swahili, Arabic.",
+                how: "Claude reads intent directly in 95+ languages — no translation step.",
+                status: "Working today", live: true,
+              },
+              {
+                n: "Problem 2", icon: Languages, title: "The content",
+                desc: "The teacher recorded in German. The student in Kenya can't understand a word.",
+                how: "Auto-dub pipeline: transcribe → translate → clone the teacher's voice → lip-sync.",
+                status: "90-day pipeline", live: false,
+              },
+              {
+                n: "Problem 3", icon: Lightbulb, title: "The explanation",
+                desc: "Even a great AI tutor is useless if it answers in a language the student can't read.",
+                how: "The Socratic tutor replies in the student's own language, automatically.",
+                status: "Working today", live: true,
+              },
+            ].map((p, i) => (
+              <BlurFade key={p.n} delay={i * 0.1} inView>
+                <div className="bg-white border border-gray-200 rounded-2xl p-6 h-full flex flex-col">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-9 h-9 rounded-lg bg-gray-900 text-white flex items-center justify-center">
+                      <p.icon className="w-4 h-4" />
+                    </div>
+                    <span className={`text-xs font-medium px-2.5 py-1 rounded-full border ${
+                      p.live ? "bg-emerald-50 text-emerald-700 border-emerald-200" : "bg-amber-50 text-amber-700 border-amber-200"
+                    }`}>
+                      {p.live ? "✓ " : ""}{p.status}
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-400 mb-1">{p.n} · {p.title}</p>
+                  <p className="text-sm text-gray-700 font-medium mb-3 leading-snug">{p.desc}</p>
+                  <p className="text-xs text-gray-500 leading-relaxed mt-auto">{p.how}</p>
+                </div>
+              </BlurFade>
+            ))}
+          </div>
+
+          {/* The content pipeline */}
+          <BlurFade delay={0.1} inView>
+            <div className="bg-gray-900 rounded-2xl p-8">
+              <p className="text-xs font-medium text-blue-400 uppercase tracking-widest mb-2 text-center">The content pipeline — Problem 2</p>
+              <p className="text-gray-400 text-sm text-center mb-8 max-w-xl mx-auto">
+                Every tool below exists and is commercially available today. Nobody has assembled them for education at this price point.
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+                {[
+                  { icon: Mic, label: "Teacher records once", sub: "any language" },
+                  { icon: BookOpen, label: "Whisper transcribes", sub: "speech → text" },
+                  { icon: Languages, label: "Claude translates", sub: "40+ languages" },
+                  { icon: Volume2, label: "ElevenLabs clones voice", sub: "their teacher's voice" },
+                  { icon: Globe, label: "Same lesson, every language", sub: "infinite reach" },
+                ].map((step, i, arr) => (
+                  <div key={step.label} className="flex items-center gap-2 sm:gap-3">
+                    <div className="bg-white/5 border border-white/10 rounded-xl p-3 w-32 text-center">
+                      <step.icon className="w-4 h-4 text-blue-400 mx-auto mb-1.5" />
+                      <p className="text-white text-xs font-medium leading-tight">{step.label}</p>
+                      <p className="text-gray-500 text-[10px] mt-0.5">{step.sub}</p>
+                    </div>
+                    {i < arr.length - 1 && <ArrowRight className="w-3.5 h-3.5 text-gray-600 shrink-0 hidden sm:block" />}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </BlurFade>
         </div>
       </section>
 
@@ -399,6 +514,55 @@ export default function HomePage() {
             </div>
           </BlurFade>
         </div>
+      </section>
+
+      {/* ── BUSINESS MODEL ── */}
+      <section className="py-24 px-6 max-w-5xl mx-auto">
+        <BlurFade inView>
+          <div className="text-center mb-4">
+            <p className="text-xs font-medium text-blue-600 uppercase tracking-widest mb-3">How it stays free</p>
+            <h2 className="text-3xl sm:text-4xl font-semibold text-gray-900 leading-tight">Sponsored education.<br />Not charity — strategy.</h2>
+          </div>
+        </BlurFade>
+        <BlurFade delay={0.1} inView>
+          <p className="text-center text-gray-500 max-w-2xl mx-auto mb-12">
+            Three actors, one loop. A company funds a course as brand-building in a market it wants to enter — not as a donation. The student never pays.
+          </p>
+        </BlurFade>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {[
+            { icon: GraduationCap, role: "Student", give: "Their attention", get: "Expert lessons in their language, matched to their exact confusion — free.", accent: "text-emerald-600 bg-emerald-50 border-emerald-200" },
+            { icon: BookOpen, role: "Teacher", give: "One recording", get: "Paid per lesson watched. Record once, reach millions across languages.", accent: "text-blue-600 bg-blue-50 border-blue-200" },
+            { icon: Building2, role: "Sponsor", give: "CSR / brand budget", get: "Measurable reach to future customers, by region and language. Meets CSR mandates.", accent: "text-violet-600 bg-violet-50 border-violet-200" },
+          ].map((a, i) => (
+            <BlurFade key={a.role} delay={i * 0.1} inView>
+              <div className="bg-white border border-gray-200 rounded-2xl p-6 h-full">
+                <div className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-4 ${a.accent}`}>
+                  <a.icon className="w-5 h-5" />
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-3">{a.role}</h3>
+                <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Gives</p>
+                <p className="text-sm text-gray-700 mb-3">{a.give}</p>
+                <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Gets</p>
+                <p className="text-sm text-gray-600 leading-relaxed">{a.get}</p>
+              </div>
+            </BlurFade>
+          ))}
+        </div>
+        <BlurFade delay={0.2} inView>
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+            {[
+              { stat: "$4B+", label: "global edtech CSR spend per year" },
+              { stat: "78%", label: "of top Indian firms already fund digital education" },
+              { stat: "2%", label: "of net profit — India's legally mandated CSR spend" },
+            ].map((s) => (
+              <div key={s.label} className="bg-gray-50 border border-gray-200 rounded-xl p-4">
+                <p className="text-2xl font-semibold text-gray-900">{s.stat}</p>
+                <p className="text-xs text-gray-500 mt-1 leading-relaxed">{s.label}</p>
+              </div>
+            ))}
+          </div>
+        </BlurFade>
       </section>
 
       {/* ── SPONSOR MARQUEE ── */}
