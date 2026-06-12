@@ -11,9 +11,10 @@ import {
 import "@xyflow/react/dist/style.css";
 
 import { layoutGraph } from "../../../lib/layout";
-import { unlockedSet, displayState } from "../../../lib/progression";
+import { unlockedSet, displayState, completion } from "../../../lib/progression";
 import { useGraphProgress } from "../../../lib/useGraphProgress";
 import SkillNode, { nodeTypes } from "../../../components/graph/SkillNode";
+import GraphHud from "../../../components/graph/GraphHud";
 import type { Graph } from "../../../lib/types";
 import graphsJson from "../../../../seed-data/graphs.json";
 
@@ -33,7 +34,7 @@ export default function GraphPage({ params }: PageProps) {
     notFound();
   }
 
-  const { progress } = useGraphProgress(graph.id);
+  const { progress, reset } = useGraphProgress(graph.id);
 
   // Record the selected node id for C1 to build on — no panel rendered yet.
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
@@ -77,13 +78,19 @@ export default function GraphPage({ params }: PageProps) {
     return { nodes, edges };
   }, [graph, progress]);
 
+  const { mastered, total } = useMemo(
+    () => completion(graph, progress),
+    [graph, progress]
+  );
+
   const onNodeClick: NodeMouseHandler = (_event, node) => {
     setSelectedNodeId(node.id);
   };
 
   return (
     // data-selected-node is read by C1 (NodePanel) once added.
-    <div className="h-screen w-screen" data-selected-node={selectedNodeId ?? ""}>
+    <div className="relative h-screen w-screen" data-selected-node={selectedNodeId ?? ""}>
+      <GraphHud mastered={mastered} total={total} onReset={reset} />
       <ReactFlow
         nodes={nodes}
         edges={edges}
