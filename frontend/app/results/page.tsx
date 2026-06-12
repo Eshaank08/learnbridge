@@ -3,7 +3,8 @@
 import { useEffect, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { Clock, ArrowLeft } from "lucide-react";
+import { Clock, ArrowLeft, ArrowRight } from "lucide-react";
+import TutorCard, { Tutor } from "@/components/tutors/TutorCard";
 
 type Lesson = {
   id: string;
@@ -23,6 +24,12 @@ function ResultsContent() {
   const [lessons, setLessons] = useState<Lesson[]>([]);
   const [loading, setLoading] = useState(true);
   const [detectedLang, setDetectedLang] = useState("");
+  const [subject, setSubject] = useState("");
+  const [allTutors, setAllTutors] = useState<Tutor[]>([]);
+
+  useEffect(() => {
+    fetch("/tutors.json").then((r) => r.json()).then(setAllTutors).catch(() => {});
+  }, []);
 
   useEffect(() => {
     if (!query) return;
@@ -37,10 +44,18 @@ function ResultsContent() {
       .then((data) => {
         setLessons(data.lessons || []);
         setDetectedLang(data.detected_language || "");
+        setSubject(data.subject || "");
       })
       .catch(() => setLessons([]))
       .finally(() => setLoading(false));
   }, [query]);
+
+  // Tutors that teach the matched subject, online first.
+  const matchedTutors = allTutors
+    .filter((t) => !subject || t.subject === subject)
+    .sort((a, b) => Number(b.online) - Number(a.online) || b.rating - a.rating)
+    .slice(0, 2);
+  const subjectOnlineCount = allTutors.filter((t) => t.subject === subject && t.online).length;
 
   return (
     <main className="min-h-screen bg-white text-gray-900">
@@ -113,6 +128,39 @@ function ResultsContent() {
                 </div>
               </Link>
             ))}
+          </div>
+        )}
+
+        {/* Live tutor match */}
+        {!loading && matchedTutors.length > 0 && (
+          <div className="mt-12 pt-8 border-t border-gray-200">
+            <div className="flex items-center justify-between mb-5">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                  </span>
+                  <h3 className="text-gray-900 font-semibold text-base">Prefer to talk to a human?</h3>
+                </div>
+                <p className="text-gray-500 text-sm">
+                  {subjectOnlineCount > 0
+                    ? `${subjectOnlineCount} ${subject} ${subjectOnlineCount === 1 ? "expert is" : "experts are"} online now and can take your question live.`
+                    : `Experts in ${subject || "your subject"} — request a session and they'll join when online.`}
+                </p>
+              </div>
+              <Link
+                href={`/tutors${subject ? `?subject=${encodeURIComponent(subject)}` : ""}`}
+                className="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium text-gray-900 hover:text-blue-600 transition-colors shrink-0"
+              >
+                See all tutors <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {matchedTutors.map((t) => (
+                <TutorCard key={t.id} tutor={t} compact />
+              ))}
+            </div>
           </div>
         )}
 

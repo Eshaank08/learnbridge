@@ -13,8 +13,10 @@ import {
   ArrowLeft,
   Check,
   Users,
+  WifiOff,
 } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
+import DownloadButton from "@/components/DownloadButton";
 
 type Material = { type: string; title: string; duration?: string; author?: string; url?: string; description?: string };
 type Lecture = { id: string; order: number; title: string; duration: string; description: string; materials: Material[] };
@@ -280,6 +282,15 @@ export default function CourseDetailPage() {
               >
                 {enrolled ? "Continue learning →" : "Enroll for free →"}
               </button>
+
+              {/* Offline download (mockup) */}
+              <div className="mt-3">
+                <DownloadButton />
+                <p className="text-xs text-gray-400 mt-2 flex items-center gap-1.5 leading-relaxed">
+                  <WifiOff className="w-3 h-3 shrink-0" />
+                  Videos, readings, and the AI tutor work fully offline once downloaded.
+                </p>
+              </div>
 
               {course.certificate && (
                 <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-xl">

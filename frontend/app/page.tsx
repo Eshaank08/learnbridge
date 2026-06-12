@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { Search, ArrowRight, Globe, Award, BookOpen, Lightbulb, ChevronRight } from "lucide-react";
+import { Search, ArrowRight, Globe, Award, BookOpen, Lightbulb, ChevronRight, WifiOff, Download, Smartphone, Check } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
 import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
 import { WordRotate } from "@/components/ui/word-rotate";
@@ -52,9 +52,9 @@ const STEPS = [
 ];
 
 const COURSES_PREVIEW = [
-  { subject: "💻", title: "Computer Science Fundamentals", teacher: "Prof. David Miller · MIT", duration: "8 weeks", cert: true },
-  { subject: "🧬", title: "Biology: Life from Molecules to Ecosystems", teacher: "Dr. Amara Osei · University of Nairobi", duration: "6 weeks", cert: true },
-  { subject: "📐", title: "Mathematics for Everyone", teacher: "Prof. Priya Sharma · IIT Bombay", duration: "10 weeks", cert: true },
+  { id: "cs-fundamentals", subject: "💻", title: "Computer Science Fundamentals", teacher: "Prof. David Miller · MIT", duration: "8 weeks", cert: true },
+  { id: "biology-foundations", subject: "🧬", title: "Biology: From Cells to Ecosystems", teacher: "Dr. Amara Osei · University of Nairobi", duration: "6 weeks", cert: true },
+  { id: "math-foundations", subject: "📐", title: "Mathematics for Everyone", teacher: "Prof. Priya Sharma · IIT Bombay", duration: "10 weeks", cert: true },
 ];
 
 export default function HomePage() {
@@ -82,6 +82,7 @@ export default function HomePage() {
         </Link>
         <div className="hidden sm:flex items-center gap-6">
           <Link href="/courses" className="text-gray-500 hover:text-gray-900 text-sm transition-colors">Courses</Link>
+          <Link href="/tutors" className="text-gray-500 hover:text-gray-900 text-sm transition-colors">Live tutors</Link>
           <Link href="/teach" className="text-gray-500 hover:text-gray-900 text-sm transition-colors">Teach</Link>
         </div>
         <div className="flex items-center gap-3">
@@ -186,9 +187,9 @@ export default function HomePage() {
           <div className="max-w-3xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
             {[
               { value: 50000, suffix: "+", label: "Students learning" },
-              { value: 3, suffix: "", label: "Expert courses" },
+              { value: 20, suffix: "+", label: "Expert courses" },
               { value: 100, suffix: "%", label: "Free for students" },
-              { value: 5, suffix: "+", label: "Languages supported" },
+              { value: 40, suffix: "+", label: "Languages supported" },
             ].map((stat) => (
               <div key={stat.label}>
                 <p className="text-3xl font-semibold text-gray-900 mb-1">
@@ -244,7 +245,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {COURSES_PREVIEW.map((c, i) => (
               <BlurFade key={c.title} delay={i * 0.08} inView>
-                <Link href="/courses">
+                <Link href={`/courses/${c.id}`}>
                   <div className="group relative bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-md hover:border-gray-300 transition-all cursor-pointer overflow-hidden">
                     <p className="text-3xl mb-4">{c.subject}</p>
                     <h3 className="font-semibold text-gray-900 text-base mb-1 leading-snug group-hover:text-blue-600 transition-colors">
@@ -325,6 +326,81 @@ export default function HomePage() {
         </section>
       </BlurFade>
 
+      {/* ── OFFLINE / ANYWHERE ── */}
+      <section className="py-24 px-6 bg-gray-900 overflow-hidden">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          {/* Device mockup */}
+          <BlurFade inView>
+            <div className="relative flex justify-center">
+              <div className="relative w-60 rounded-[2.2rem] border-[6px] border-gray-700 bg-gray-950 shadow-2xl overflow-hidden">
+                {/* notch */}
+                <div className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-1.5 rounded-full bg-gray-700 z-10" />
+                <div className="pt-7 pb-5 px-3.5 space-y-2.5">
+                  <div className="flex items-center justify-between px-1 mb-1">
+                    <span className="text-white text-xs font-medium">My downloads</span>
+                    <span className="flex items-center gap-1 text-[10px] text-emerald-400"><WifiOff className="w-2.5 h-2.5" /> Offline</span>
+                  </div>
+                  {[
+                    { e: "💻", t: "Computer Science", s: "84 MB" },
+                    { e: "🧬", t: "Biology", s: "62 MB" },
+                    { e: "📐", t: "Mathematics", s: "71 MB" },
+                  ].map((c) => (
+                    <div key={c.t} className="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-xl px-2.5 py-2">
+                      <span className="text-base">{c.e}</span>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-white text-[11px] font-medium truncate">{c.t}</p>
+                        <p className="text-gray-500 text-[9px]">{c.s} · Downloaded</p>
+                      </div>
+                      <Check className="w-3 h-3 text-emerald-400 shrink-0" />
+                    </div>
+                  ))}
+                  {/* offline tutor pill */}
+                  <div className="bg-amber-400/10 border border-amber-400/20 rounded-xl px-2.5 py-2 flex items-center gap-2 mt-3">
+                    <Lightbulb className="w-3 h-3 text-amber-400 shrink-0" />
+                    <p className="text-amber-300 text-[10px] leading-tight">AI tutor running on-device — no internet needed</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </BlurFade>
+
+          {/* Copy */}
+          <BlurFade delay={0.1} inView>
+            <div>
+              <p className="text-xs font-medium text-blue-400 uppercase tracking-widest mb-3">Learn anywhere</p>
+              <h2 className="text-3xl font-semibold text-white mb-4 leading-tight">
+                Download once. Learn offline.<br />Even the AI tutor.
+              </h2>
+              <p className="text-gray-400 leading-relaxed mb-6">
+                Half the world's students don't have reliable internet. So LearnBridge is built as an app you can carry: download any course — videos, readings, certificate — and the on-device AI tutor keeps helping you, with no connection at all.
+              </p>
+              <div className="space-y-3 mb-8">
+                {[
+                  { icon: Download, text: "Every course downloadable for offline use" },
+                  { icon: WifiOff, text: "Socratic AI tutor runs locally — works with zero internet" },
+                  { icon: Smartphone, text: "One free app, distributable to anyone, anywhere on Earth" },
+                ].map((f) => (
+                  <div key={f.text} className="flex items-center gap-3 text-sm text-gray-300">
+                    <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+                      <f.icon className="w-4 h-4 text-gray-300" />
+                    </div>
+                    {f.text}
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <span className="inline-flex items-center gap-2 bg-white/10 border border-white/10 text-white text-sm font-medium px-4 py-2.5 rounded-xl">
+                  <Smartphone className="w-4 h-4" /> iOS · Android · Web
+                </span>
+                <Link href="/courses" className="inline-flex items-center gap-2 bg-white text-gray-900 text-sm font-medium px-4 py-2.5 rounded-xl hover:bg-gray-100 transition-colors">
+                  <Download className="w-4 h-4" /> Try a download
+                </Link>
+              </div>
+            </div>
+          </BlurFade>
+        </div>
+      </section>
+
       {/* ── SPONSOR MARQUEE ── */}
       <section className="py-14 border-y border-gray-100 bg-gray-50 overflow-hidden">
         <BlurFade inView>
@@ -379,6 +455,7 @@ export default function HomePage() {
           <p className="text-xs text-gray-400">Free education for every student, everywhere. Built at Claude Builders Club Hackathon.</p>
           <div className="flex gap-4 text-xs text-gray-400">
             <Link href="/courses" className="hover:text-gray-700 transition-colors">Courses</Link>
+            <Link href="/tutors" className="hover:text-gray-700 transition-colors">Live tutors</Link>
             <Link href="/teach" className="hover:text-gray-700 transition-colors">Teach</Link>
             <Link href="/auth/signup" className="hover:text-gray-700 transition-colors">Sign up</Link>
           </div>
