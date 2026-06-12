@@ -4,6 +4,8 @@
 
 🌐 **Live:** https://learnbridge-eshaank08s-projects.vercel.app
 
+📎 **Pitch deck:** [LearnBridge-Overview.pptx](./LearnBridge-Overview.pptx) · [LearnBridge-Overview.pdf](./LearnBridge-Overview.pdf)
+
 Built for the **Claude Builders Club Hackathon** — Theme: Education
 
 ---
