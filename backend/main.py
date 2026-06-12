@@ -9,6 +9,7 @@ load_dotenv()
 
 from seed import get_node  # noqa: E402 — load_dotenv must run first
 from mocks import mock_questions, grade_items  # noqa: E402
+from llm import generate_test  # noqa: E402
 
 app = FastAPI(title="LearnBridge API")
 
@@ -84,8 +85,15 @@ def generate(req: GenerateRequest) -> GenerateResponse:
     if mock_mode:
         return GenerateResponse(questions=mock_questions(node))
 
-    # Live mode (D3) — not yet implemented.
-    raise HTTPException(status_code=502, detail="Live mode not yet implemented.")
+    # Live mode (D3) — call Claude via structured outputs.
+    try:
+        questions = generate_test(node, req.language)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=502,
+            detail=f"Live question generation failed: {exc}",
+        ) from exc
+    return GenerateResponse(questions=questions)
 
 
 @app.post("/api/test/grade", response_model=GradeResponse)
