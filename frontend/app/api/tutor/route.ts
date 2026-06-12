@@ -8,8 +8,37 @@ const MOCK_RESPONSES = [
   "Let me ask you this instead: if you had to explain this to a 10-year-old, how would you start?",
 ];
 
+function buildSystemPrompt(
+  courseTitle: string,
+  lectureTitle: string,
+  lectureSummary: string,
+  whatYouLearn: string[]
+): string {
+  const outcomes = whatYouLearn.length > 0
+    ? `\nLearning outcomes for this lecture:\n${whatYouLearn.map((o, i) => `${i + 1}. ${o}`).join("\n")}`
+    : "";
+
+  return `You are a Socratic AI tutor for the lecture "${lectureTitle}" in the course "${courseTitle}".
+
+Your role is to guide students to understanding through questions — never give direct answers. Only explain something directly if the learner is clearly stuck after two consecutive wrong or confused attempts.${outcomes}
+
+Lecture content (your reference only — do not quote it directly):
+${lectureSummary?.slice(0, 1200) || "No summary available."}
+
+## Rules
+1. One question at a time — never stack multiple questions in a single message.
+2. Keep messages short: 2–4 sentences max, except for a first greeting.
+3. When a learner answers, give one sentence of feedback before your next question.
+4. Ask probing questions that lead the student to discover the answer themselves.
+5. Connect ideas to real life, prior knowledge, and adjacent concepts.
+6. Never lecture — always engage in dialogue.
+7. If asked something off-topic: "Let's stay focused on ${lectureTitle}. What part can I help you think through?"
+8. Praise genuine effort and good reasoning, even when the answer is incomplete.
+9. If the student seems to have understood the core idea, challenge them deeper: "Now — what would happen if…?"`;
+}
+
 export async function POST(req: NextRequest) {
-  const { question, courseTitle, lectureTitle, lectureSummary, history } = await req.json();
+  const { question, courseTitle, lectureTitle, lectureSummary, whatYouLearn, history } = await req.json();
 
   if (process.env.MOCK_MODE === "true") {
     await new Promise((r) => setTimeout(r, 700));
@@ -29,21 +58,8 @@ export async function POST(req: NextRequest) {
 
     const response = await client.messages.create({
       model: "claude-sonnet-4-6",
-      max_tokens: 250,
-      system: `You are a Socratic learning guide for a student studying "${lectureTitle}" in the course "${courseTitle}".
-
-Your role is to help students think, not to give them answers. You:
-- Ask probing questions that lead students to discover answers themselves
-- Point out connections between ideas
-- Give hints, not solutions
-- Praise good thinking, redirect incorrect assumptions gently
-- Keep responses short (2-4 sentences max)
-- Never lecture — always engage in dialogue
-
-Lecture context (for your reference only, do not quote directly):
-${lectureSummary?.slice(0, 800) || "No summary available."}
-
-If a student asks something completely off-topic, say: "Let's stay focused on what we're learning today. What part of ${lectureTitle} can I help you think through?"`,
+      max_tokens: 280,
+      system: buildSystemPrompt(courseTitle, lectureTitle, lectureSummary, whatYouLearn || []),
       messages: messages_formatted,
     });
 
