@@ -15,7 +15,6 @@ import {
   Users,
   WifiOff,
 } from "lucide-react";
-import { useAuth } from "@/lib/auth-context";
 import DownloadButton from "@/components/DownloadButton";
 
 type Material = { type: string; title: string; duration?: string; author?: string; url?: string; description?: string };
@@ -52,9 +51,8 @@ const MAT_COLOR: Record<string, string> = {
 export default function CourseDetailPage() {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
-  const { user } = useAuth();
   const [course, setCourse] = useState<Course | null>(null);
-  const [expanded, setExpanded] = useState<string | null>("lec-1");
+  const [expanded, setExpanded] = useState<string | null>(null);
   const [enrolled, setEnrolled] = useState(false);
 
   useEffect(() => {
@@ -66,13 +64,14 @@ export default function CourseDetailPage() {
   }, [id]);
 
   const enroll = () => {
-    if (!user) {
-      router.push("/auth/signup");
-      return;
-    }
     localStorage.setItem(`lb_enrolled_${id}`, "1");
     setEnrolled(true);
     router.push(`/learn/${id}/${course?.lectures[0]?.id}`);
+  };
+
+  const startLecture = (lectureId: string) => {
+    localStorage.setItem(`lb_enrolled_${id}`, "1");
+    router.push(`/learn/${id}/${lectureId}`);
   };
 
   const totalMaterials = course?.lectures.reduce((sum, l) => sum + l.materials.length, 0) || 0;
@@ -208,7 +207,15 @@ export default function CourseDetailPage() {
                             transition={{ duration: 0.2 }}
                             className="px-4 pb-4 space-y-2 border-t border-gray-100"
                           >
-                            <div className="pt-3 space-y-2">
+                            <div className="pt-3 pb-1">
+                              <button
+                                onClick={() => startLecture(lec.id)}
+                                className="inline-flex items-center gap-1.5 text-xs font-medium text-white bg-gray-900 hover:bg-gray-700 px-3 py-1.5 rounded-lg transition-colors"
+                              >
+                                <Play className="w-3 h-3" /> Start this lecture
+                              </button>
+                            </div>
+                            <div className="space-y-2">
                               {lec.materials.map((mat, mi) => {
                                 const Icon = MAT_ICON[mat.type] || BookOpen;
                                 return (
