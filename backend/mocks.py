@@ -1,6 +1,7 @@
 """
-Mock question generation — works for ANY node, no canned per-node files.
-Produces node-specific questions templated from the node's own title/summary.
+Mock question generation and deterministic grading — works for ANY node, no
+canned per-node files.  The grade_items helper is also reused by the live MCQ
+path in D4 so that MCQ scoring never goes to Claude.
 """
 
 
@@ -107,3 +108,74 @@ def mock_questions(node: dict) -> list[dict]:
     short_question["id"] = f"q{len(selected_mcq) + 1}"
 
     return selected_mcq + [short_question]
+
+
+# ---------------------------------------------------------------------------
+# Deterministic scorer — reused by mock mode AND the live MCQ path (D4).
+# ---------------------------------------------------------------------------
+
+
+def grade_items(node: dict, items: list[dict]) -> dict:
+    """Grade a list of answered items against the node's test spec.
+
+    Each item has the shape:
+        { "question": <Question as served>, "answer": <int | str> }
+
+    MCQ: correct iff answer (int) == question["correctIndex"].
+    Short: correct iff answer is a non-empty string (mock rule; D4 replaces
+           this branch with a Claude call for live mode).
+
+    Returns the full §Contracts grade response dict:
+        { "score", "passed", "perQuestion", "feedback" }
+    """
+    per_question: list[dict] = []
+    correct_count = 0
+
+    for item in items:
+        question = item["question"]
+        answer = item["answer"]
+        q_id = question["id"]
+        q_type = question.get("type", "mcq")
+
+        if q_type == "mcq":
+            correct = answer == question.get("correctIndex")
+        else:
+            # short answer: non-empty string counts as correct (mock rule)
+            correct = isinstance(answer, str) and answer.strip() != ""
+
+        correct_count += int(correct)
+        feedback = (
+            "Correct."
+            if correct
+            else "Not quite — review the topic summary."
+        )
+        per_question.append({"id": q_id, "correct": correct, "feedback": feedback})
+
+    total = len(items)
+    score = correct_count / total if total > 0 else 0.0
+    pass_threshold: float = node["test"]["passThreshold"]
+    passed = score >= pass_threshold
+
+    if passed:
+        overall_feedback = (
+            f"Well done! You scored {correct_count}/{total} "
+            f"({score * 100:.0f}%) on this test, which meets the "
+            f"{pass_threshold * 100:.0f}% pass threshold. "
+            f"You have demonstrated a solid understanding of the topic. "
+            "Move on to the next node to keep building."
+        )
+    else:
+        overall_feedback = (
+            f"You scored {correct_count}/{total} "
+            f"({score * 100:.0f}%), which is below the "
+            f"{pass_threshold * 100:.0f}% pass threshold. "
+            "Review the topic summary and the questions you missed, "
+            "then try again — there are unlimited retakes."
+        )
+
+    return {
+        "score": score,
+        "passed": passed,
+        "perQuestion": per_question,
+        "feedback": overall_feedback,
+    }
