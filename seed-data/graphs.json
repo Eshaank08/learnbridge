@@ -91,5 +91,559 @@
       { "id": "e1", "source": "foundations", "target": "core-concepts" },
       { "id": "e2", "source": "core-concepts", "target": "applications" }
     ]
+  },
+  {
+    "id": "math",
+    "title": "Mathematics: From Arithmetic to Differential Equations",
+    "subject": "Mathematics",
+    "description": "A comprehensive roadmap through core mathematics, from basic arithmetic all the way to calculus, differential equations, linear algebra, and probability — with real branching so you can explore the directions that interest you most.",
+    "nodes": [
+      {
+        "id": "arithmetic",
+        "title": "Arithmetic",
+        "concept": "Numbers and the four basic operations",
+        "level": "beginner",
+        "summary": "Arithmetic is the foundation of all mathematics. It covers the natural numbers, integers, fractions, and decimals, along with the four fundamental operations — addition, subtraction, multiplication, and division. You learn the order of operations (PEMDAS/BODMAS) and why it matters, the properties of zero and one, and how to reason about negative numbers on the number line. Fluency with arithmetic develops numerical intuition: the ability to estimate, check answers for plausibility, and detect errors. Without arithmetic, algebra has no grounding, and higher mathematics loses its connection to concrete quantities. This node is the root of the entire graph and has no prerequisites.",
+        "estimatedMinutes": 30,
+        "resources": [
+          {
+            "type": "video",
+            "title": "Arithmetic Basics — Khan Academy",
+            "url": "https://www.khanacademy.org/math/arithmetic",
+            "source": "Khan Academy"
+          },
+          {
+            "type": "book",
+            "title": "Prealgebra — OpenStax",
+            "url": "https://openstax.org/details/books/prealgebra-2e",
+            "source": "OpenStax"
+          }
+        ],
+        "sponsor": {
+          "name": "OpenStax",
+          "tagline": "Free, peer-reviewed textbooks for every learner.",
+          "logo_placeholder": "openstax"
+        },
+        "test": { "passThreshold": 0.7, "numQuestions": 4 }
+      },
+      {
+        "id": "algebra",
+        "title": "Algebra",
+        "concept": "Variables, equations, and symbolic reasoning",
+        "level": "beginner",
+        "summary": "Algebra introduces the concept of a variable — a symbol that stands for an unknown or a changing quantity — and builds a language for describing relationships between quantities symbolically. You learn to write and solve linear equations and inequalities, manipulate algebraic expressions using the distributive property and factoring, and work with systems of two equations. The shift from arithmetic to algebra is the shift from computing specific answers to reasoning about whole families of possible answers at once. This perspective is what makes algebra so powerful: a single equation can describe infinitely many situations. Algebra is prerequisite to every branch of higher mathematics covered in this roadmap.",
+        "estimatedMinutes": 45,
+        "resources": [
+          {
+            "type": "video",
+            "title": "Algebra I — Khan Academy",
+            "url": "https://www.khanacademy.org/math/algebra",
+            "source": "Khan Academy"
+          },
+          {
+            "type": "book",
+            "title": "Elementary Algebra — OpenStax",
+            "url": "https://openstax.org/details/books/elementary-algebra-2e",
+            "source": "OpenStax"
+          },
+          {
+            "type": "article",
+            "title": "Introduction to Algebra — MIT OpenCourseWare",
+            "url": "https://ocw.mit.edu/courses/18-01-single-variable-calculus-fall-2006/",
+            "source": "MIT OCW"
+          }
+        ],
+        "test": { "passThreshold": 0.7, "numQuestions": 4 }
+      },
+      {
+        "id": "functions",
+        "title": "Functions",
+        "concept": "Mappings between sets and their properties",
+        "level": "intermediate",
+        "summary": "A function is a rule that assigns to each input exactly one output. This node covers domain, codomain, and range; injective, surjective, and bijective functions; composition and inverse; and the key family of functions — linear, quadratic, polynomial, rational, exponential, and logarithmic. You will explore how to read and draw graphs of functions, identify intercepts and asymptotes, and reason about growth rates. The concept of a function is arguably the central organizing idea of modern mathematics: calculus is the study of how functions change, linear algebra studies linear functions on vector spaces, and probability theory uses random variables which are functions from outcomes to numbers.",
+        "estimatedMinutes": 50,
+        "resources": [
+          {
+            "type": "video",
+            "title": "Functions and Their Graphs — Khan Academy",
+            "url": "https://www.khanacademy.org/math/algebra2/x2ec2f6f830c9fb89:functions",
+            "source": "Khan Academy"
+          },
+          {
+            "type": "video",
+            "title": "What is a Function? — 3Blue1Brown",
+            "url": "https://www.youtube.com/watch?v=WUvTyaaNkzM",
+            "source": "3Blue1Brown",
+            "duration": "17 min"
+          },
+          {
+            "type": "book",
+            "title": "Precalculus — OpenStax",
+            "url": "https://openstax.org/details/books/precalculus-2e",
+            "source": "OpenStax"
+          }
+        ],
+        "sponsor": {
+          "name": "Desmos",
+          "tagline": "Graph functions beautifully, for free.",
+          "logo_placeholder": "desmos"
+        },
+        "test": { "passThreshold": 0.7, "numQuestions": 4 }
+      },
+      {
+        "id": "trigonometry",
+        "title": "Trigonometry",
+        "concept": "Angles, triangles, and periodic functions",
+        "level": "intermediate",
+        "summary": "Trigonometry studies the relationships between angle measures and side lengths in triangles, then extends those relationships into the sine, cosine, and tangent functions defined on the entire real line. You learn the unit circle — the most important picture in trigonometry — which connects angles in radians to coordinates, and explains why sin and cos are periodic with period 2π. Key identities (Pythagorean identity, angle addition formulas, double-angle formulas) let you simplify and rewrite expressions. Trigonometry is essential in physics (wave motion, oscillations), engineering (signal processing), and calculus (integrals involving trig substitutions). It forms one of two branches that follow from functions.",
+        "estimatedMinutes": 55,
+        "resources": [
+          {
+            "type": "video",
+            "title": "Trigonometry — Khan Academy",
+            "url": "https://www.khanacademy.org/math/trigonometry",
+            "source": "Khan Academy"
+          },
+          {
+            "type": "video",
+            "title": "Trig Visualized on the Unit Circle — 3Blue1Brown",
+            "url": "https://www.youtube.com/watch?v=yBw67Fb31Cs",
+            "source": "3Blue1Brown",
+            "duration": "12 min"
+          }
+        ],
+        "sponsor": {
+          "name": "Wolfram Alpha",
+          "tagline": "Compute expert-level answers instantly.",
+          "logo_placeholder": "wolfram"
+        },
+        "test": { "passThreshold": 0.7, "numQuestions": 4 }
+      },
+      {
+        "id": "sequences",
+        "title": "Sequences and Series",
+        "concept": "Ordered lists of numbers and their sums",
+        "level": "intermediate",
+        "summary": "A sequence is an ordered list of numbers following a rule; a series is the sum of a sequence's terms. This node covers arithmetic sequences (constant differences), geometric sequences (constant ratios), and their partial-sum formulas. You then study infinite series and the crucial question of convergence: does the sum of infinitely many terms settle on a finite value? Tests for convergence — ratio test, comparison test, integral test — give practical tools for answering this. Taylor series, which approximate any smooth function as an infinite polynomial, sit at the intersection of sequences, series, and calculus. Understanding convergence is foundational for analysis, numerical methods, and the theory of limits.",
+        "estimatedMinutes": 50,
+        "resources": [
+          {
+            "type": "video",
+            "title": "Sequences and Series — Khan Academy",
+            "url": "https://www.khanacademy.org/math/ap-calculus-bc/bc-series-new",
+            "source": "Khan Academy"
+          },
+          {
+            "type": "book",
+            "title": "Calculus Volume 2 (Sequences and Series) — OpenStax",
+            "url": "https://openstax.org/details/books/calculus-volume-2",
+            "source": "OpenStax"
+          }
+        ],
+        "test": { "passThreshold": 0.7, "numQuestions": 4 }
+      },
+      {
+        "id": "limits",
+        "title": "Limits and Continuity",
+        "concept": "The behavior of functions as inputs approach a value",
+        "level": "intermediate",
+        "summary": "The limit formalises the intuition of 'getting arbitrarily close': we say the limit of f(x) as x approaches a equals L if f(x) can be made as close to L as we wish by taking x sufficiently close to a. This rigorous definition, due to Cauchy and Weierstrass, underpins all of calculus. You study one-sided limits, infinite limits, limits at infinity, and the Squeeze Theorem. Continuity — the property that a function has no breaks, jumps, or holes — is defined precisely in terms of limits: f is continuous at a if the limit equals the function value. Understanding limits dissolves apparent paradoxes about motion and infinity, and prepares you to define the derivative rigorously in the calculus node.",
+        "estimatedMinutes": 45,
+        "resources": [
+          {
+            "type": "video",
+            "title": "Limits and Continuity — Khan Academy",
+            "url": "https://www.khanacademy.org/math/ap-calculus-ab/ab-limits-new",
+            "source": "Khan Academy"
+          },
+          {
+            "type": "video",
+            "title": "Essence of Calculus, Chapter 1 — 3Blue1Brown",
+            "url": "https://www.youtube.com/watch?v=WUvTyaaNkzM",
+            "source": "3Blue1Brown",
+            "duration": "17 min"
+          },
+          {
+            "type": "book",
+            "title": "Calculus Volume 1 (Limits) — OpenStax",
+            "url": "https://openstax.org/details/books/calculus-volume-1",
+            "source": "OpenStax"
+          }
+        ],
+        "sponsor": {
+          "name": "Desmos",
+          "tagline": "Graph functions beautifully, for free.",
+          "logo_placeholder": "desmos"
+        },
+        "test": { "passThreshold": 0.7, "numQuestions": 4 }
+      },
+      {
+        "id": "calculus",
+        "title": "Calculus: Differentiation and Integration",
+        "concept": "Rates of change and accumulation",
+        "level": "advanced",
+        "summary": "Calculus consists of two tightly linked operations: differentiation, which computes the instantaneous rate of change of a function, and integration, which computes the accumulated area under a curve. The Fundamental Theorem of Calculus is the spectacular result that these two operations are inverses of each other. Differentiation rules — product rule, quotient rule, chain rule — let you find derivatives of composite functions mechanically. Integration techniques — substitution, integration by parts, partial fractions — let you evaluate definite and indefinite integrals. Applications include optimisation (finding maxima and minima), related rates, arc length, volumes of revolution, and the analysis of motion. Calculus is the mathematical language of physics, engineering, economics, and nearly every quantitative science.",
+        "estimatedMinutes": 90,
+        "resources": [
+          {
+            "type": "video",
+            "title": "Essence of Calculus — 3Blue1Brown",
+            "url": "https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr",
+            "source": "3Blue1Brown"
+          },
+          {
+            "type": "book",
+            "title": "Calculus Volume 1 — OpenStax",
+            "url": "https://openstax.org/details/books/calculus-volume-1",
+            "source": "OpenStax"
+          },
+          {
+            "type": "article",
+            "title": "Single Variable Calculus — MIT OpenCourseWare 18.01",
+            "url": "https://ocw.mit.edu/courses/18-01-single-variable-calculus-fall-2006/",
+            "source": "MIT OCW"
+          }
+        ],
+        "sponsor": {
+          "name": "Wolfram Alpha",
+          "tagline": "Compute expert-level answers instantly.",
+          "logo_placeholder": "wolfram"
+        },
+        "test": { "passThreshold": 0.7, "numQuestions": 4 }
+      },
+      {
+        "id": "differential-equations",
+        "title": "Differential Equations",
+        "concept": "Equations relating functions and their derivatives",
+        "level": "advanced",
+        "summary": "A differential equation is an equation that relates a function to one or more of its derivatives. Ordinary differential equations (ODEs) involve a function of one variable; partial differential equations (PDEs) involve functions of several variables. This node focuses on first-order ODEs (separable, linear, exact), second-order linear ODEs with constant coefficients (the characteristic-equation method, undetermined coefficients, variation of parameters), and systems of ODEs. Differential equations are the natural language for modelling anything that changes continuously: population growth, radioactive decay, predator-prey dynamics, spring-mass systems, and electric circuits. Solutions may be explicit formulas or, when no closed form exists, qualitative phase-portrait analyses or numerical approximations.",
+        "estimatedMinutes": 80,
+        "resources": [
+          {
+            "type": "video",
+            "title": "Differential Equations — 3Blue1Brown",
+            "url": "https://www.youtube.com/playlist?list=PLZHQObOWTQDNPOjrT6KVlfJuKtYTftqH6",
+            "source": "3Blue1Brown"
+          },
+          {
+            "type": "book",
+            "title": "Elementary Differential Equations — MIT OCW 18.03",
+            "url": "https://ocw.mit.edu/courses/18-03-differential-equations-spring-2010/",
+            "source": "MIT OCW"
+          }
+        ],
+        "test": { "passThreshold": 0.7, "numQuestions": 4 }
+      },
+      {
+        "id": "linear-algebra",
+        "title": "Linear Algebra",
+        "concept": "Vectors, matrices, and linear transformations",
+        "level": "advanced",
+        "summary": "Linear algebra studies vectors and the linear transformations between vector spaces. Core objects include vectors, matrices, determinants, eigenvalues, and eigenvectors. You learn to solve systems of linear equations using Gaussian elimination and matrix inversion, understand what the column space, null space, and rank of a matrix mean geometrically, and diagonalise matrices to simplify computations. The geometric perspective — linear transformations as stretches, rotations, and shears of space — is as important as the algebraic machinery. Linear algebra is indispensable in data science (principal component analysis), machine learning (neural networks), computer graphics, and quantum mechanics. It also deepens your understanding of calculus through the multi-variable derivative as a linear map.",
+        "estimatedMinutes": 75,
+        "resources": [
+          {
+            "type": "video",
+            "title": "Essence of Linear Algebra — 3Blue1Brown",
+            "url": "https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab",
+            "source": "3Blue1Brown"
+          },
+          {
+            "type": "book",
+            "title": "Linear Algebra — MIT OpenCourseWare 18.06",
+            "url": "https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/",
+            "source": "MIT OCW"
+          },
+          {
+            "type": "book",
+            "title": "Introductory Statistics and Linear Algebra — OpenStax",
+            "url": "https://openstax.org/details/books/introductory-statistics",
+            "source": "OpenStax"
+          }
+        ],
+        "sponsor": {
+          "name": "Wolfram Alpha",
+          "tagline": "Compute expert-level answers instantly.",
+          "logo_placeholder": "wolfram"
+        },
+        "test": { "passThreshold": 0.7, "numQuestions": 4 }
+      },
+      {
+        "id": "probability",
+        "title": "Probability",
+        "concept": "Measuring uncertainty and reasoning about random events",
+        "level": "intermediate",
+        "summary": "Probability theory provides a mathematical framework for reasoning about uncertainty. Starting from the axioms of probability (non-negativity, normalisation, and countable additivity), you derive rules for computing the probability of compound events: the addition rule for mutually exclusive events, the multiplication rule for independent events, and the general law of total probability. Conditional probability and Bayes' theorem let you update beliefs when new evidence arrives — this is the engine behind spam filters, medical tests, and machine-learning classifiers. You also study discrete random variables (Bernoulli, binomial, Poisson distributions) and continuous random variables (uniform, normal, exponential distributions), along with expectation, variance, and the Central Limit Theorem, which explains why the normal distribution appears everywhere.",
+        "estimatedMinutes": 60,
+        "resources": [
+          {
+            "type": "video",
+            "title": "Statistics and Probability — Khan Academy",
+            "url": "https://www.khanacademy.org/math/statistics-probability",
+            "source": "Khan Academy"
+          },
+          {
+            "type": "book",
+            "title": "Introductory Statistics — OpenStax",
+            "url": "https://openstax.org/details/books/introductory-statistics",
+            "source": "OpenStax"
+          }
+        ],
+        "test": { "passThreshold": 0.7, "numQuestions": 4 }
+      },
+      {
+        "id": "statistics",
+        "title": "Statistics",
+        "concept": "Drawing conclusions from data under uncertainty",
+        "level": "advanced",
+        "summary": "Statistics is the science of learning from data. Descriptive statistics summarise a dataset with measures of centre (mean, median, mode) and spread (variance, standard deviation, interquartile range), and visualise distributions with histograms, box plots, and scatter plots. Inferential statistics uses probability theory to draw conclusions about a population from a sample: you construct confidence intervals that bracket a true parameter with a stated level of confidence, and carry out hypothesis tests (t-tests, chi-square tests, ANOVA) to decide whether observed patterns are statistically significant or likely due to chance. The logic of null and alternative hypotheses, p-values, and Type I/II errors is the backbone of scientific reporting in biology, medicine, economics, and the social sciences. Linear regression bridges statistics with function fitting.",
+        "estimatedMinutes": 65,
+        "resources": [
+          {
+            "type": "video",
+            "title": "AP Statistics — Khan Academy",
+            "url": "https://www.khanacademy.org/math/ap-statistics",
+            "source": "Khan Academy"
+          },
+          {
+            "type": "book",
+            "title": "Introductory Statistics — OpenStax",
+            "url": "https://openstax.org/details/books/introductory-statistics",
+            "source": "OpenStax"
+          }
+        ],
+        "sponsor": {
+          "name": "OpenStax",
+          "tagline": "Free, peer-reviewed textbooks for every learner.",
+          "logo_placeholder": "openstax"
+        },
+        "test": { "passThreshold": 0.7, "numQuestions": 4 }
+      },
+      {
+        "id": "multivariable-calculus",
+        "title": "Multivariable Calculus",
+        "concept": "Extending calculus to functions of several variables",
+        "level": "advanced",
+        "summary": "Multivariable calculus extends the ideas of differentiation and integration from one-variable functions to functions of two or more variables, which are needed whenever a quantity depends on several inputs simultaneously. Partial derivatives measure how a function changes with respect to each variable while the others are held fixed; the gradient vector points in the direction of steepest ascent. Double and triple integrals generalise area and volume computations; the change-of-variables theorem (with the Jacobian) adapts integration to curvilinear coordinates. The theorems of Green, Stokes, and Gauss (the Divergence Theorem) generalise the Fundamental Theorem of Calculus to curves, surfaces, and volumes in three-dimensional space, and underlie Maxwell's equations of electromagnetism. This node requires both single-variable calculus and basic linear algebra.",
+        "estimatedMinutes": 85,
+        "resources": [
+          {
+            "type": "video",
+            "title": "Multivariable Calculus — Khan Academy",
+            "url": "https://www.khanacademy.org/math/multivariable-calculus",
+            "source": "Khan Academy"
+          },
+          {
+            "type": "article",
+            "title": "Multivariable Calculus — MIT OpenCourseWare 18.02",
+            "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/",
+            "source": "MIT OCW"
+          },
+          {
+            "type": "book",
+            "title": "Calculus Volume 3 — OpenStax",
+            "url": "https://openstax.org/details/books/calculus-volume-3",
+            "source": "OpenStax"
+          }
+        ],
+        "test": { "passThreshold": 0.7, "numQuestions": 4 }
+      }
+    ],
+    "edges": [
+      { "id": "m-e1", "source": "arithmetic", "target": "algebra" },
+      { "id": "m-e2", "source": "algebra", "target": "functions" },
+      { "id": "m-e3", "source": "functions", "target": "trigonometry" },
+      { "id": "m-e4", "source": "functions", "target": "sequences" },
+      { "id": "m-e5", "source": "trigonometry", "target": "limits" },
+      { "id": "m-e6", "source": "sequences", "target": "limits" },
+      { "id": "m-e7", "source": "limits", "target": "calculus" },
+      { "id": "m-e8", "source": "calculus", "target": "differential-equations" },
+      { "id": "m-e9", "source": "algebra", "target": "linear-algebra" },
+      { "id": "m-e10", "source": "algebra", "target": "probability" },
+      { "id": "m-e11", "source": "probability", "target": "statistics" },
+      { "id": "m-e12", "source": "calculus", "target": "multivariable-calculus" },
+      { "id": "m-e13", "source": "linear-algebra", "target": "multivariable-calculus" }
+    ]
+  },
+  {
+    "id": "biology",
+    "title": "Biology: From Cells to Ecosystems",
+    "subject": "Biology",
+    "description": "A focused roadmap through the core concepts of life science, starting with cell theory and progressing through membrane biology, photosynthesis, cellular respiration, genetics, and ecology.",
+    "nodes": [
+      {
+        "id": "cell-theory",
+        "title": "Cell Theory",
+        "concept": "The fundamental unit of life",
+        "level": "beginner",
+        "summary": "Cell theory is one of the cornerstones of modern biology, stating three principles: all living organisms are composed of one or more cells; the cell is the basic structural and functional unit of life; and all cells arise from pre-existing cells. You learn to distinguish prokaryotic cells (bacteria and archaea — no membrane-bound nucleus) from eukaryotic cells (plants, animals, fungi, protists — with a nucleus and organelles). Each organelle has a specific role: the nucleus stores genetic information, the mitochondria produce ATP through cellular respiration, ribosomes synthesise proteins, and the endoplasmic reticulum and Golgi apparatus process and transport molecules. Cell theory frames all subsequent biology: every process in this roadmap happens at the cellular level.",
+        "estimatedMinutes": 40,
+        "resources": [
+          {
+            "type": "video",
+            "title": "Intro to Cells — Khan Academy",
+            "url": "https://www.khanacademy.org/science/ap-biology/cell-structure-and-function",
+            "source": "Khan Academy"
+          },
+          {
+            "type": "book",
+            "title": "Concepts of Biology — OpenStax",
+            "url": "https://openstax.org/details/books/concepts-biology",
+            "source": "OpenStax"
+          }
+        ],
+        "sponsor": {
+          "name": "OpenStax",
+          "tagline": "Free, peer-reviewed textbooks for every learner.",
+          "logo_placeholder": "openstax"
+        },
+        "test": { "passThreshold": 0.7, "numQuestions": 4 }
+      },
+      {
+        "id": "cell-membrane",
+        "title": "Cell Membrane and Transport",
+        "concept": "How cells control what enters and exits",
+        "level": "intermediate",
+        "summary": "The cell membrane is a selectively permeable phospholipid bilayer that separates a cell's interior from its environment and controls the movement of substances in and out. The fluid-mosaic model describes the membrane as a dynamic structure: phospholipid molecules are arranged tail-to-tail forming a bilayer, with cholesterol stabilising fluidity, and various proteins embedded in or attached to the bilayer serving as channels, carriers, receptors, and enzymes. Passive transport (simple diffusion, facilitated diffusion, osmosis) moves substances down their concentration gradient without energy input. Active transport uses ATP to move substances against their gradient, which is essential for maintaining ion concentrations that drive nerve impulses and nutrient absorption. Endocytosis and exocytosis bulk-import or export large molecules by budding membrane vesicles.",
+        "estimatedMinutes": 45,
+        "resources": [
+          {
+            "type": "video",
+            "title": "Cell Membrane and Transport — Khan Academy",
+            "url": "https://www.khanacademy.org/science/ap-biology/cell-structure-and-function/cell-membrane-overview",
+            "source": "Khan Academy"
+          },
+          {
+            "type": "book",
+            "title": "Biology 2e (Membrane Transport) — OpenStax",
+            "url": "https://openstax.org/details/books/biology-2e",
+            "source": "OpenStax"
+          }
+        ],
+        "test": { "passThreshold": 0.7, "numQuestions": 4 }
+      },
+      {
+        "id": "photosynthesis",
+        "title": "Photosynthesis",
+        "concept": "Converting light energy into chemical energy",
+        "level": "intermediate",
+        "summary": "Photosynthesis is the process by which plants, algae, and cyanobacteria capture light energy and use it to convert carbon dioxide and water into glucose and oxygen. The overall equation — 6CO₂ + 6H₂O + light energy → C₆H₁₂O₆ + 6O₂ — summarises two tightly coupled stages. The light-dependent reactions occur in the thylakoid membranes of chloroplasts: chlorophyll and other pigments absorb sunlight, use that energy to split water (releasing O₂ as a by-product), and produce ATP and NADPH via the electron transport chain and ATP synthase (chemiosmosis). The light-independent reactions (the Calvin cycle) take place in the stroma: the enzyme RuBisCO fixes CO₂ from the air and uses the ATP and NADPH from the light reactions to reduce it into glyceraldehyde-3-phosphate (G3P), the building block for glucose. Photosynthesis is the primary entry point of energy into nearly all food webs on Earth.",
+        "estimatedMinutes": 55,
+        "resources": [
+          {
+            "type": "video",
+            "title": "Photosynthesis — Khan Academy",
+            "url": "https://www.khanacademy.org/science/ap-biology/cellular-energetics/photosynthesis",
+            "source": "Khan Academy"
+          },
+          {
+            "type": "book",
+            "title": "Biology 2e (Photosynthesis) — OpenStax",
+            "url": "https://openstax.org/details/books/biology-2e",
+            "source": "OpenStax"
+          },
+          {
+            "type": "article",
+            "title": "How Does Photosynthesis Work? — Smithsonian Ocean",
+            "url": "https://ocean.si.edu/ocean-life/plants-algae/photosynthesis",
+            "source": "Smithsonian"
+          }
+        ],
+        "sponsor": {
+          "name": "OpenStax",
+          "tagline": "Free, peer-reviewed textbooks for every learner.",
+          "logo_placeholder": "openstax"
+        },
+        "test": { "passThreshold": 0.7, "numQuestions": 4 }
+      },
+      {
+        "id": "cellular-respiration",
+        "title": "Cellular Respiration",
+        "concept": "Harvesting chemical energy from glucose",
+        "level": "intermediate",
+        "summary": "Cellular respiration is the set of metabolic reactions by which cells break down glucose and other organic molecules to release the chemical energy stored in their bonds, capturing it in the form of ATP for use by the cell. Aerobic respiration has three main stages: glycolysis (in the cytosol) splits glucose into two pyruvate molecules and yields a small amount of ATP and NADH; the Krebs cycle (in the mitochondrial matrix) completely oxidises pyruvate to CO₂, generating NADH and FADH₂; and oxidative phosphorylation (on the inner mitochondrial membrane) uses the electron transport chain to pump protons, creating the electrochemical gradient that drives ATP synthase to produce the bulk of ATP (~28–32 ATP per glucose). Anaerobic fermentation is a fallback when oxygen is unavailable, regenerating NAD⁺ at the cost of producing lactate or ethanol. Cellular respiration is chemically the reverse of photosynthesis and links those two nodes tightly.",
+        "estimatedMinutes": 60,
+        "resources": [
+          {
+            "type": "video",
+            "title": "Cellular Respiration — Khan Academy",
+            "url": "https://www.khanacademy.org/science/ap-biology/cellular-energetics/cellular-respiration-ap",
+            "source": "Khan Academy"
+          },
+          {
+            "type": "book",
+            "title": "Biology 2e (Cellular Respiration) — OpenStax",
+            "url": "https://openstax.org/details/books/biology-2e",
+            "source": "OpenStax"
+          }
+        ],
+        "test": { "passThreshold": 0.7, "numQuestions": 4 }
+      },
+      {
+        "id": "genetics",
+        "title": "Genetics and Heredity",
+        "concept": "How traits are encoded and passed to offspring",
+        "level": "intermediate",
+        "summary": "Genetics is the study of genes, heredity, and variation in organisms. Mendel's laws — segregation and independent assortment — describe how alleles (alternate forms of a gene) are sorted into gametes and combined at fertilisation. You learn to predict offspring ratios using Punnett squares, distinguish dominant from recessive alleles, and analyse pedigrees to determine inheritance patterns of human traits and diseases. At the molecular level, genes are segments of DNA encoding proteins via transcription (DNA → RNA) and translation (RNA → protein). Mutations — changes in nucleotide sequence — can alter protein function with consequences ranging from neutral to deleterious to occasionally beneficial. Modern genetics also covers chromosomal inheritance, sex-linked traits, and an introduction to molecular techniques such as PCR and gel electrophoresis. Genetics connects cell biology to evolution and ecology.",
+        "estimatedMinutes": 65,
+        "resources": [
+          {
+            "type": "video",
+            "title": "Classical Genetics — Khan Academy",
+            "url": "https://www.khanacademy.org/science/ap-biology/heredity",
+            "source": "Khan Academy"
+          },
+          {
+            "type": "book",
+            "title": "Biology 2e (Genetics) — OpenStax",
+            "url": "https://openstax.org/details/books/biology-2e",
+            "source": "OpenStax"
+          }
+        ],
+        "test": { "passThreshold": 0.7, "numQuestions": 4 }
+      },
+      {
+        "id": "ecology",
+        "title": "Ecology",
+        "concept": "Interactions between organisms and their environments",
+        "level": "advanced",
+        "summary": "Ecology studies the interactions between organisms and between organisms and their physical environment, across scales ranging from individual organisms to the entire biosphere. Population ecology examines how birth rates, death rates, immigration, and emigration determine population size, and models logistic growth (with a carrying capacity K) and predator-prey oscillations (Lotka-Volterra equations). Community ecology focuses on species interactions — competition, predation, mutualism, commensalism, parasitism — and their consequences for community structure, biodiversity, and succession. Ecosystem ecology tracks the flow of energy through food webs (only about 10% transfers between trophic levels) and the cycling of matter (carbon, nitrogen, phosphorus cycles). Conservation biology applies ecological principles to assess extinction risks, design protected areas, and plan restoration projects. Understanding photosynthesis and cellular respiration is essential here because they drive the carbon and oxygen cycles at the ecosystem level.",
+        "estimatedMinutes": 70,
+        "resources": [
+          {
+            "type": "video",
+            "title": "Ecology — Khan Academy",
+            "url": "https://www.khanacademy.org/science/ap-biology/ecology-ap",
+            "source": "Khan Academy"
+          },
+          {
+            "type": "book",
+            "title": "Environmental Science — OpenStax",
+            "url": "https://openstax.org/details/books/environmental-science",
+            "source": "OpenStax"
+          },
+          {
+            "type": "article",
+            "title": "Ecosystems and Carbon — NASA Earth Observatory",
+            "url": "https://earthobservatory.nasa.gov/features/CarbonCycle",
+            "source": "NASA"
+          }
+        ],
+        "sponsor": {
+          "name": "OpenStax",
+          "tagline": "Free, peer-reviewed textbooks for every learner.",
+          "logo_placeholder": "openstax"
+        },
+        "test": { "passThreshold": 0.7, "numQuestions": 4 }
+      }
+    ],
+    "edges": [
+      { "id": "b-e1", "source": "cell-theory", "target": "cell-membrane" },
+      { "id": "b-e2", "source": "cell-theory", "target": "photosynthesis" },
+      { "id": "b-e3", "source": "cell-theory", "target": "genetics" },
+      { "id": "b-e4", "source": "photosynthesis", "target": "cellular-respiration" },
+      { "id": "b-e5", "source": "cellular-respiration", "target": "ecology" },
+      { "id": "b-e6", "source": "genetics", "target": "ecology" }
+    ]
   }
 ]
