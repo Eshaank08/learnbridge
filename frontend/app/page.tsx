@@ -1,101 +1,78 @@
-import Image from "next/image";
+import Link from "next/link";
+import graphsJson from "../../seed-data/graphs.json";
+import type { Graph } from "../lib/types";
+
+const graphs = graphsJson as unknown as Graph[];
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen bg-gray-950 text-slate-100">
+      {/* Header */}
+      <header className="border-b border-slate-800 bg-gray-900/80 backdrop-blur-sm sticky top-0 z-10">
+        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center gap-3">
+          <span className="text-2xl font-bold tracking-tight text-amber-400">
+            LearnBridge
+          </span>
+        </div>
+      </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Hero */}
+      <section className="max-w-5xl mx-auto px-6 pt-16 pb-12 text-center">
+        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-50 mb-4">
+          Learn anything as a{" "}
+          <span className="text-amber-400">skill tree</span>
+        </h1>
+        <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+          Learn anything as a skill tree — unlock topics, master them with
+          AI-graded quizzes.
+        </p>
+      </section>
+
+      {/* Roadmap grid */}
+      <main className="max-w-5xl mx-auto px-6 pb-20">
+        <h2 className="text-sm font-semibold uppercase tracking-widest text-slate-500 mb-6">
+          Choose a roadmap
+        </h2>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {graphs.map((graph) => (
+            <Link
+              key={graph.id}
+              href={`/graph/${graph.id}`}
+              className="group flex flex-col gap-3 rounded-2xl border border-slate-800 bg-gray-900 p-6 transition-all duration-200 hover:border-amber-500/60 hover:bg-gray-800 hover:shadow-lg hover:shadow-amber-900/20"
+            >
+              {/* Subject pill */}
+              <span className="self-start rounded-full bg-emerald-900/60 px-3 py-0.5 text-xs font-medium text-emerald-300 ring-1 ring-emerald-700/50">
+                {graph.subject}
+              </span>
+
+              {/* Title */}
+              <h3 className="text-lg font-semibold text-slate-100 group-hover:text-amber-300 transition-colors leading-snug">
+                {graph.title}
+              </h3>
+
+              {/* Description */}
+              <p className="text-sm text-slate-400 leading-relaxed flex-1">
+                {graph.description}
+              </p>
+
+              {/* Footer: node count */}
+              <div className="pt-1 flex items-center gap-1.5 text-xs text-slate-500">
+                <svg
+                  className="w-3.5 h-3.5 text-amber-500/70"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  viewBox="0 0 24 24"
+                >
+                  <circle cx="12" cy="12" r="3" />
+                  <path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" />
+                </svg>
+                <span>{graph.nodes.length} topics</span>
+              </div>
+            </Link>
+          ))}
         </div>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
